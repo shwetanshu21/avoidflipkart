@@ -137,9 +137,9 @@ The pairing balances a humanist editorial voice with the square, public-display 
 
 ## Layout
 
-The desktop opening is a composed `3 / 2` frame: a full-width dark header, a left-aligned message and board, and an illustrative scene extending across the upper field. A pale overview follows within the frame. The casebook below changes to fluid editorial sections with `clamp(20px, 3.9vw, 76px)` horizontal gutters and generous vertical space. Common reading sections use a `5fr 7fr` split and a `7%` gap; rows use thin dividers and a narrower metadata column.
+The opening flows in normal document order: a full-width dark header, then a hero whose illustrative scene sits behind a left-aligned message and the board (up to `68vw` wide), then a pale overview. Nothing is absolutely positioned, so longer copy never collides with the board. The casebook below changes to fluid editorial sections with `clamp(20px, 3.9vw, 76px)` horizontal gutters and generous vertical space. Common reading sections use a `5fr 7fr` split and a `7%` gap; rows use thin dividers and a narrower metadata column.
 
-At `800px` and below, the opening moves into normal document flow, the navigation becomes a disclosure, multi-column editorial content stacks, and the four overview steps become two columns. The board can scroll horizontally at intermediate widths. At `600px` and below, each board row becomes a two-column labeled record, with the item and status spanning the row. Keep the board's relationship between item, promised or ordered date, reported delivery, and status clear at every size.
+At `1100px` and below, the board spans the full width and the overview stacks. At `800px` and below, the navigation becomes a disclosure, multi-column editorial content stacks, and the four overview steps become two columns. The board can scroll horizontally at intermediate widths. At `600px` and below, each board row becomes a two-column labeled record, with the item and status spanning the row. Keep the board's relationship between item, promised or ordered date, reported delivery, and status clear at every size.
 
 ## Elevation & Depth
 
@@ -147,14 +147,14 @@ The site is predominantly flat. Depth comes from the dark-to-light section rhyth
 
 ## Shapes
 
-The board and primary buttons are softly rounded rectangles (`10px` and `9px` respectively), while the supporting price note uses an `8px` radius. Step icons sit in circles. Elsewhere, straight one-pixel rules and open rows carry structure; corners and shadows are not used to turn every piece of content into a card.
+The board and primary buttons are softly rounded rectangles (`10px` and `9px` respectively), while the supporting notice panel uses an `8px` radius. Step icons sit in circles. Elsewhere, straight one-pixel rules and open rows carry structure; corners and shadows are not used to turn every piece of content into a card.
 
 ## Components
 
 - **Primary action:** amber, dark text, bold Murecho, and a minimum `44px` height. Hover lightens the fill and lifts the button by `2px`; reduced-motion preferences remove the transition and lift.
 - **Navigation:** deep-blue bar with a bold wordmark, inline desktop links, and a compact amber action. The mobile menu is a native disclosure with a minimum `44px` summary target.
 - **Arrival board:** a rounded dark surface with a title strip, uppercase column labels, ruled table, amber date and status values, and linked item names. Its mobile form retains labels and reading order.
-- **Overview steps and supporting note:** circular pale-blue icon fields organize a short sequence; a warm, rounded panel distinguishes the price note.
+- **Overview steps and supporting note:** circular pale-blue icon fields organize a short sequence; a warm, rounded panel distinguishes the priority-support note.
 - **Editorial rows:** order and message entries use generous vertical padding, a metadata column, and horizontal rules instead of individual cards.
 - **Question disclosure:** native `details` and `summary` elements make each question an accessible, ruled row.
 
