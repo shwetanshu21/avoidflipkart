@@ -1,0 +1,7 @@
+.impeccable/
+.taste-skill/
+PRODUCT.md
+*.zip
+site/
+assets/fonts/*.ttf
+assets/fonts/*latin*

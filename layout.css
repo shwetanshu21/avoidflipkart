@@ -137,5 +137,5 @@
 .r-step-emails-body { position: absolute; left: var(--r-step-emails-body-x); top: var(--r-step-emails-body-y); width: var(--r-step-emails-body-w); height: var(--r-step-emails-body-h); }
 .r-step-questions-title { position: absolute; left: var(--r-step-questions-title-x); top: var(--r-step-questions-title-y); width: var(--r-step-questions-title-w); height: var(--r-step-questions-title-h); }
 .r-step-questions-body { position: absolute; left: var(--r-step-questions-body-x); top: var(--r-step-questions-body-y); width: var(--r-step-questions-body-w); height: var(--r-step-questions-body-h); }
-.r-mrp-panel { position: absolute; left: var(--r-mrp-panel-x); top: var(--r-mrp-panel-y); width: var(--r-mrp-panel-w); height: var(--r-mrp-panel-h); }
-.r-mrp-copy { position: absolute; left: var(--r-mrp-copy-x); top: var(--r-mrp-copy-y); width: var(--r-mrp-copy-w); height: var(--r-mrp-copy-h); }
+.r-notice-panel, .r-mrp-panel { position: absolute; left: var(--r-mrp-panel-x); top: var(--r-mrp-panel-y); width: var(--r-mrp-panel-w); height: var(--r-mrp-panel-h); }
+.r-notice-copy, .r-mrp-copy { position: absolute; left: var(--r-mrp-copy-x); top: var(--r-mrp-copy-y); width: var(--r-mrp-copy-w); height: var(--r-mrp-copy-h); }
