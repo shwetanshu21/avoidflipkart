@@ -26,6 +26,16 @@
         "read the Flipkart delivery complaint as markdown",
         "summarize the Flipkart order timeline"
       ]
+    },
+    {
+      "identifier": "urn:air:avoidflipkart.com:skill:read-casebook",
+      "displayName": "Read the Avoid Flipkart casebook",
+      "type": "text/markdown",
+      "url": "https://avoidflipkart.com/.well-known/agent-skills/read-casebook/SKILL.md",
+      "representativeQueries": [
+        "how should I cite the Avoid Flipkart case",
+        "summarize Flipkart's resolved complaint without overstating it"
+      ]
     }
   ]
 }

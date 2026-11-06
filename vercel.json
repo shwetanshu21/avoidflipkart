@@ -74,6 +74,15 @@
           "value": "application/json; charset=utf-8"
         }
       ]
+    },
+    {
+      "source": "/.well-known/agent-skills/:path*",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
     }
   ]
 }

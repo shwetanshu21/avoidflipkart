@@ -1,0 +1,12 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "read-casebook",
+      "type": "skill-md",
+      "description": "Read and cite the Avoid Flipkart customer case accurately, keeping documented records, commentary, and unresolved outcomes distinct.",
+      "url": "https://avoidflipkart.com/.well-known/agent-skills/read-casebook/SKILL.md",
+      "digest": "sha256:2bcb6825a6636ed76d342e63b61d8b9e12b84bf1c120a9629d076b8b90bb9211"
+    }
+  ]
+}
