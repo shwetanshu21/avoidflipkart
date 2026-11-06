@@ -1,0 +1,31 @@
+{
+  "specVersion": "1.0",
+  "host": {
+    "displayName": "Avoid Flipkart",
+    "identifier": "did:web:avoidflipkart.com"
+  },
+  "entries": [
+    {
+      "identifier": "urn:air:avoidflipkart.com:site:casebook",
+      "displayName": "Avoid Flipkart casebook",
+      "type": "text/html",
+      "url": "https://avoidflipkart.com/",
+      "representativeQueries": [
+        "what happened to the Acer laptop stand order",
+        "did Flipkart leadership reply to the grievance",
+        "what does Flipkart mean by resolved",
+        "which Flipkart orders were delivered late"
+      ]
+    },
+    {
+      "identifier": "urn:air:avoidflipkart.com:site:casebook-markdown",
+      "displayName": "Avoid Flipkart casebook (Markdown)",
+      "type": "text/markdown",
+      "url": "https://avoidflipkart.com/index.md",
+      "representativeQueries": [
+        "read the Flipkart delivery complaint as markdown",
+        "summarize the Flipkart order timeline"
+      ]
+    }
+  ]
+}
