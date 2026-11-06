@@ -6,5 +6,3 @@ export default function proxy(request) {
     return rewrite(new URL('/index.md', request.url));
   }
 }
-
-export const config = { matcher: '/' };
