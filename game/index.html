@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101b25">
+  <title>CLOSED. — A Customer Care Career Simulator</title>
+  <meta name="description" content="Close tickets. Open opportunities. An absurd office game with 840 fictional cases, seven promotions, and absolutely the wrong incentives. Climb from Flipkart support to Walmart CEO.">
+  <link rel="canonical" href="https://avoidflipkart.com/game/">
+  <meta property="og:title" content="CLOSED. — Your career. Their problem.">
+  <meta property="og:description" content="840 cases. Seven ranks. Zero accountability. A satirical customer-care career simulator.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://avoidflipkart.com/game/">
+  <meta property="og:image" content="https://avoidflipkart.com/game/social.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="CLOSED. Your career. Their problem. 840 cases, seven ranks, zero accountability.">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="./icon.svg">
+  <link rel="preload" href="../assets/fonts/murecho-english.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/chakra-semibold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="./game.css?v=1">
+  <link rel="stylesheet" href="./scene.css?v=1">
+  <script type="module" src="./app.js?v=1"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to game</a>
+  <div class="page-grain" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="wordmark" href="./" aria-label="CLOSED home"><span class="brand-stamp" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 4h8v7l3 4H5l3-4V4ZM4 18h16v3H4z"/></svg></span>CLOSED<span class="brand-period">.</span></a>
+    <span class="brand-caption">A CUSTOMER CARE<br>CAREER SIMULATOR</span>
+    <nav aria-label="Game navigation">
+      <button class="nav-button" data-action="career"><span class="nav-symbol" aria-hidden="true">↗</span> Career ladder</button>
+      <button class="nav-button" data-action="handbook"><span class="nav-symbol" aria-hidden="true">?</span> Handbook</button>
+      <button class="icon-button" id="sound-button" data-action="sound" aria-label="Turn sound on" aria-pressed="false"></button>
+      <button class="icon-button" id="pause-button" data-action="pause" aria-label="Pause game" hidden></button>
+    </nav>
+  </header>
+  <main id="main" tabindex="-1"><div class="boot-message"><span class="live-dot"></span> Locating your desk. Please remain employed.</div></main>
+  <footer class="site-footer">
+    <a href="/">An Avoid Flipkart original <span aria-hidden="true">↗</span></a>
+    <span>FICTIONAL CASES. SUSPICIOUSLY FAMILIAR ENERGY.</span>
+    <button data-action="about">About this satire</button>
+  </footer>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <dialog id="game-dialog" aria-labelledby="dialog-title"><div id="dialog-content"></div></dialog>
+  <noscript><div class="no-script">CLOSED needs JavaScript to run the game. Enable it, then reload. <a href="/">The original casebook is readable without it.</a></div></noscript>
+</body>
+</html>

@@ -12,6 +12,14 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Verify game content and mechanics
+        run: npm test
+
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
 

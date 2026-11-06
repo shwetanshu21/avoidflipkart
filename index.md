@@ -218,75 +218,13 @@ Received in reply, as of 6 November: automated incident updates from Customer Su
 
 There is a difference between an email being received and a company being reached. Flipkart has mastered the first.
 
-## The support simulator.
+## CLOSED. — The customer care career simulator
 
-Experience Flipkart VIP priority support in real time: unprovoked rescheduling, meteorological panic, the strawberry Turing test, and the infinite grievance incident generator. Written in the unyielding tradition of David Thorne.
+Play the full browser game at [avoidflipkart.com/game/](https://avoidflipkart.com/game/).
 
-Try the interactive console directly on the web at [avoidflipkart.com/#simulator](https://avoidflipkart.com/#simulator).
+Start as a Flipkart customer-care executive and give increasingly ridiculous excuses to close fictional complaints. Fast closures build combos and corporate approval. Actually solving a problem loses points and raises management heat. Climb seven ranks through senior support, team lead, grievance officer, operations director and Flipkart CEO to become Walmart CEO, complete a global career and continue in endless mode.
 
-### Excerpt 1: On Meteorological Blame
-
-> **Customer:** "Why is my parcel late? What happened to the delivery?"
->
-> **Agent Zaid (Senior Atmospheric Logistics Specialist):**
->
-> Dear Customer,
->
-> I have examined our Doppler meteorological telemetry logs for Western India. At approximately 11:34 AM, an ephemeral cumulus cloud measuring four metres across drifted over suburban Pune, causing ambient sunlight levels to dip by 0.04%.
->
-> Under Flipkart Weather Policy 14-B (*“Protection of Couriers from Ephemeral Shadows”*), our delivery personnel are legally mandated to dismount their two-wheelers and seek shelter under a banyan tree until atmospheric serenity is re-established.
->
-> Furthermore, local relative humidity reached 47%, which introduces the severe hazard of parcel cardboard developing acute existential lethargy.
->
-> Your shipment has therefore been safely relocated to a climate-controlled bunker in an undisclosed district of Karnataka until atmospheric perfection is restored.
->
-> Kind regards,  
-> **Zaid**  
-> Senior Atmospheric Logistics Specialist
-
-### Excerpt 2: The Astral Rescheduling Agreement
-
-> **Customer:** "I never asked to reschedule my delivery! Why does tracking claim customer requested?"
->
-> **Agent Zaid (Verified Biological Human):**
->
-> Dear Customer,
->
-> Thank you for your correspondence denying that you rescheduled your delivery. While you may have no conscious recollection of submitting this request, our predictive neural telepathy engine recorded a distinct sigh of logistical ambivalence from your IP address at 02:41 AM on Thursday.
->
-> Under Flipkart Clause 8.2 (*“Subconscious and Astral Modifications”*), any customer who rolls over in bed during REM sleep and subconsciously ponders whether they truly need an ergonomic mouse today has legally entered into a binding rescheduling agreement.
->
-> Out of profound respect for your subconscious autonomy, we pushed delivery forward by six calendar days. You are welcome.
->
-> To revoke this astral rescheduling, please submit Form 104-C in triplicate via certified carrier pigeon.
->
-> Kind regards,  
-> **Zaid**  
-> Certified Biological Human (Flesh Division)
-
-### Excerpt 3: The Grievance Officer Infinite Incident Loop
-
-> **Customer:** "I demand to escalate this to Grievance Officer Mr Karthik R. immediately."
->
-> **Karthik R. (Grievance Officer):**
->
-> Dear Customer,
->
-> This is Karthik R., Grievance Officer.
->
-> I have personally inspected your file. Our database indicates with tranquil certainty that **“we see you haven’t contacted our support team about your concern.”**
->
-> While you may argue that you are currently typing into our support console and have exchanged multiple messages with Agent Zaid, our internal audit categorizes those interactions as purely recreational banter between consenting adults.
->
-> Consequently, **Incident #INC-849201** has been stamped **RESOLVED** and archived due to non-existence of prior contact.
->
-> To uphold Indian Consumer Redressal regulations, I have immediately minted new **Incident #INC-849202** for your records.
->
-> Please note that if you attempt to contact support regarding Incident #INC-849202, that will also constitute zero contact, and will result in Incident #INC-849203.
->
-> Yours serenely,  
-> **Karthik R.**  
-> Chief Officer of Historical Revisionism & Grievance Redaction
+There are 120 cases per rank, 840 in total, with four responses each, illustrated offices, shift reviews, achievements, optional sound and browser-local saves. All game cases, customers, memos and conversations are invented satire, separate from this documented account.
 
 ## The verdict.
 

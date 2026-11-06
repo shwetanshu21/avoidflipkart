@@ -3,5 +3,9 @@
   "type": "module",
   "dependencies": {
     "@vercel/functions": "^3.11.0"
+  },
+  "scripts": {
+    "dev": "node scripts/dev-server.mjs",
+    "test": "node --test game/*.test.js"
   }
 }

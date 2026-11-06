@@ -1,0 +1,144 @@
+/* The office is an original vector illustration; no network assets required. */
+.office-scene {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  isolation: isolate;
+  shape-rendering: geometricPrecision;
+}
+
+.office-scene .scene-rain {
+  animation: office-rain 2.4s linear infinite;
+}
+
+.office-scene .scene-steam {
+  animation: office-steam 4s ease-in-out infinite;
+  transform-origin: 462px 341px;
+}
+
+.office-scene .scene-steam path:nth-child(2) {
+  animation: office-steam-drift 3.6s ease-in-out infinite reverse;
+}
+
+.office-scene .scene-head {
+  transform-origin: 387px 277px;
+  animation: office-breathe 5.6s ease-in-out infinite;
+}
+
+.office-scene .scene-screen-cursor {
+  animation: office-cursor 1.35s steps(1, end) infinite;
+}
+
+.office-scene .scene-screen-check {
+  animation: office-screen 7s ease-in-out infinite;
+}
+
+.office-scene .scene-clock-hand {
+  transform-origin: 535px 58px;
+  animation: office-clock 60s linear infinite;
+}
+
+.office-scene .scene-plant {
+  transform-origin: 578px 431px;
+  animation: office-plant 8s ease-in-out infinite;
+}
+
+.office-scene .scene-ha {
+  opacity: 0;
+  animation: office-laugh 4.5s ease-out infinite;
+}
+
+.office-scene .scene-ha-two {
+  animation-delay: .22s;
+}
+
+.office-scene .scene-ha-three {
+  animation-delay: .44s;
+}
+
+.office-scene .scene-laughing .scene-head {
+  animation: office-villain 4.5s ease-in-out infinite;
+}
+
+.office-scene.scene-mood-promotion .scene-head {
+  animation: office-villain 1.5s ease-in-out 2;
+}
+
+.office-scene .scene-manager {
+  animation: office-manager .35s ease-out both;
+  transform-origin: 105px 300px;
+}
+
+.office-scene.scene-mood-audit .scene-screen-check {
+  animation: office-cursor 1s steps(1, end) infinite;
+}
+
+@keyframes office-rain {
+  from { transform: translate(0, -15px); }
+  to { transform: translate(-12px, 20px); }
+}
+
+@keyframes office-steam {
+  0%, 100% { transform: translateY(2px) scaleX(.95); opacity: .25; }
+  50% { transform: translateY(-3px) scaleX(1.1); opacity: .6; }
+}
+
+@keyframes office-steam-drift {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(3px); }
+}
+
+@keyframes office-breathe {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(1.2px) rotate(.7deg); }
+}
+
+@keyframes office-cursor {
+  0%, 55% { opacity: 1; }
+  56%, 100% { opacity: 0; }
+}
+
+@keyframes office-screen {
+  0%, 88%, 100% { opacity: 1; }
+  92%, 96% { opacity: .5; }
+}
+
+@keyframes office-clock {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes office-plant {
+  0%, 100% { transform: rotate(-.25deg); }
+  50% { transform: rotate(.45deg); }
+}
+
+@keyframes office-laugh {
+  0%, 12% { opacity: 0; translate: 0 4px; }
+  20%, 40% { opacity: .85; translate: 0 0; }
+  57%, 100% { opacity: 0; translate: 1px -9px; }
+}
+
+@keyframes office-villain {
+  0%, 12%, 52%, 100% { transform: rotate(0); }
+  20%, 32%, 44% { transform: rotate(-4deg) translateY(-1px); }
+  26%, 38% { transform: rotate(-2deg) translateY(1px); }
+}
+
+@keyframes office-manager {
+  from { opacity: 0; transform: translateY(5px) scale(.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .office-scene *,
+  .office-scene *::before,
+  .office-scene *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .office-scene .scene-ha {
+    opacity: .8;
+  }
+}

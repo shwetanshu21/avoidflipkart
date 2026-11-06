@@ -81,6 +81,14 @@ components:
 
 # Design System: Avoid Flipkart
 
+## CLOSED game extension
+
+The playable game at `/game/` has its own visual language, while the documented casebook retains the system below. Its direction is a late-night office diorama: dark ink (`#101b25`), warm case-file paper (`#f6f1e6`), peach actions (`#f4a577`), and mint corporate approval (`#a8d6b6`). Murecho carries readable narrative; Chakra carries administrative labels and scores.
+
+Each rank upgrades an original animated SVG office. Cases sit on a pale, subtly torn paper surface beside that office; four distinct response cards form the primary interaction. Case evidence is a disclosure, performance reviews and career information use native modal dialogs, and visible focus states and reduced-motion settings apply throughout. The game has no external font or image fetches.
+
+Management heat means suspicion of employee competence: genuine help raises heat, ridiculous excuses cool it, and the most absurd response earns the highest base reward. Keep this distinction clear in both language and color. Fictional game cases must remain visibly separate from the documentary account.
+
 ## Overview
 
 **Creative North Star: "The Arrival Board"**

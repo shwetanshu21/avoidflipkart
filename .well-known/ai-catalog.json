@@ -56,6 +56,16 @@
         "list MCP tools for the Flipkart case",
         "query order status through MCP"
       ]
+    },
+    {
+      "identifier": "urn:air:avoidflipkart.com:game:closed",
+      "displayName": "CLOSED \u2014 fictional customer-care career game",
+      "type": "text/html",
+      "url": "https://avoidflipkart.com/game/",
+      "representativeQueries": [
+        "play the customer care career game",
+        "close fictional complaints and become CEO"
+      ]
     }
   ]
 }
