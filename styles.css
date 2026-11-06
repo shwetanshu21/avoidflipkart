@@ -84,6 +84,11 @@ tbody td { padding:clamp(12px,1.2vw,18px) clamp(12px,1.6vw,24px); color:var(--am
 .message time::before { content:""; display:inline-block; width:8px; height:8px; margin-top:6px; border-radius:50%; background:var(--amber); box-shadow:0 0 0 3px rgba(255,198,44,.2); flex:none; }
 .message > div { max-width:70ch; }.message h3 { margin:0 0 15px; font-size:clamp(24px,2.2vw,33px); line-height:1.15; letter-spacing:-.025em; }.message p { margin:0 0 1em; color:#dcecf5; font-size:18px; }.message p:last-child { margin-bottom:0; }
 .message blockquote { margin:22px 0; padding:18px 24px; border-left:3px solid var(--amber); border-radius:0 6px 6px 0; background:rgba(255,198,44,.06); color:#ffd159; font-size:clamp(22px,2vw,32px); line-height:1.25; font-weight:700; letter-spacing:-.025em; }
+.verdict { padding-block:clamp(76px,9vw,140px); background:#f4fafc; }
+.verdict-list { list-style:none; padding:0; margin:28px 0; border-top:1px solid #a5c0ce; }
+.verdict-list li { position:relative; padding:18px 0 18px 32px; border-bottom:1px solid #a5c0ce; font-size:17px; line-height:1.6; color:#0b2142; }
+.verdict-list li::before { content:"✕"; position:absolute; left:0; top:18px; color:#ff5c36; font-weight:700; font-size:18px; line-height:1; }
+.verdict-list li strong { color:#071646; }
 .questions { display:grid; grid-template-columns:5fr 7fr; gap:7%; padding-block:clamp(76px,9vw,140px); background:#dfedf3; }.questions > div:first-child p { max-width:30ch; color:#41637e; font-size:17px; }
 .question-list { border-top:1px solid #a5c0ce; }.question-list details { border-bottom:1px solid #a5c0ce; }.question-list summary { position:relative; padding:23px 36px 23px 0; font-size:18px; font-weight:700; cursor:pointer; list-style:none; }
 .question-list summary::-webkit-details-marker { display:none; }
@@ -138,7 +143,7 @@ tbody td { padding:clamp(12px,1.2vw,18px) clamp(12px,1.6vw,24px); color:var(--am
  .board-scroll { overflow-x:auto; } table { width:720px; }
  .overview { padding:44px 20px; } .steps { grid-template-columns:repeat(2,1fr); gap:24px; }
  .step:not(:last-child)::after { display:none; }
- .opening,.questions,.about { grid-template-columns:1fr; gap:28px; }.section-heading { display:block; margin-bottom:36px; }.section-heading > p { margin-top:18px; }
+ .opening,.questions,.about,.verdict { grid-template-columns:1fr; gap:28px; }.section-heading { display:block; margin-bottom:36px; }.section-heading > p { margin-top:18px; }
  .order-row { grid-template-columns:1fr; gap:12px; padding:24px 0; margin:0; border-radius:0; } .order-row:hover { background:transparent; } .order-row p { font-size:16px; }
  .message { grid-template-columns:1fr; gap:12px; padding:28px 0; } .message p { font-size:16px; }
  .question-list summary { font-size:17px; padding:20px 32px 20px 0; } .question-list details p { font-size:16px; }
