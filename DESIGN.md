@@ -1,82 +1,36 @@
 ---
 name: Avoid Flipkart
-description: An independent customer account told through a public-information board and an editorial casebook.
+description: A satirical editorial cover, historical arrival board and documented customer casebook.
 colors:
   navy: "#082442"
   deep: "#071a2d"
-  header-blue: "#08284f"
-  board-blue: "#071a2c"
+  blue: "#1264bd"
   light: "#edf8fc"
-  paper: "#f4fafc"
-  board-label: "#c4dff4"
-  ink: "#071646"
-  casebook-ink: "#0b2142"
-  muted-ink: "#41637e"
-  rule: "#a5c0ce"
-  board-rule: "#174369"
   amber: "#ffc62c"
-  amber-hover: "#ffdc6a"
-  amber-focus: "#ffd55e"
-  note-paper: "#fbefd8"
+  paper: "#f4f8f8"
+  ink: "#0b2540"
+  muted: "#50677b"
+  rule: "#bdcdd3"
 typography:
   display:
     fontFamily: "Murecho, sans-serif"
-    fontSize: "clamp(48px, 6.38vw, 98px)"
+    fontSize: "clamp(62px, 6.7vw, 104px)"
     fontWeight: 700
-    lineHeight: 0.94
-    letterSpacing: "-0.035em"
+    lineHeight: 0.99
   headline:
     fontFamily: "Murecho, sans-serif"
-    fontSize: "clamp(2.2rem, 4.35vw, 4.3rem)"
+    fontSize: "clamp(34px, 4vw, 60px)"
     fontWeight: 700
-    lineHeight: 1.05
-    letterSpacing: "-0.035em"
-  title:
-    fontFamily: "Murecho, sans-serif"
-    fontSize: "clamp(24px, 2.2vw, 33px)"
-    fontWeight: 700
-    lineHeight: 1.15
-    letterSpacing: "-0.025em"
+    lineHeight: 1.1
   body:
     fontFamily: "Murecho, sans-serif"
-    fontSize: "clamp(17px, 1.22vw, 19px)"
-    fontWeight: 400
-    lineHeight: 1.6
+    fontSize: "17px"
+    lineHeight: 1.65
   board-data:
     fontFamily: "Chakra, sans-serif"
-    fontSize: "clamp(17px, 1.78vw, 28px)"
-    fontWeight: 400
-    lineHeight: 1
-    letterSpacing: "0.09em"
-rounded:
-  note: "8px"
-  button: "9px"
-  board: "10px"
-  circle: "50%"
 spacing:
-  compact: "16px"
-  group: "24px"
-  column: "28px"
-  section-gutter: "clamp(20px, 3.9vw, 76px)"
-  section-block: "clamp(76px, 9vw, 140px)"
-components:
-  button-primary:
-    backgroundColor: "{colors.amber}"
-    textColor: "#10151c"
-    rounded: "{rounded.button}"
-  button-primary-hover:
-    backgroundColor: "{colors.amber-hover}"
-  navigation:
-    backgroundColor: "{colors.header-blue}"
-    textColor: "{colors.light}"
-  arrival-board:
-    backgroundColor: "{colors.board-blue}"
-    textColor: "{colors.board-label}"
-    rounded: "{rounded.board}"
-  evidence-note:
-    backgroundColor: "{colors.note-paper}"
-    textColor: "#111820"
-    rounded: "{rounded.note}"
+  section-gutter: "clamp(22px, 5.2vw, 88px)"
+  section-block: "clamp(68px, 7.7vw, 118px)"
 ---
 
 # Design System: Avoid Flipkart
@@ -125,96 +79,32 @@ Retain visible amber focus, the skip link, semantic buttons, evidence disclosure
 
 The timer counts active case time. Pause it for results, dialogs and hidden tabs; returning from a hidden tab requires an explicit resume. A slow reply forfeits speed rewards but does not automatically fail the case. Never use animation, colour or sound as the only carrier of a decision's outcome.
 
-## Overview
+## Core casebook
 
-**Creative North Star: "The Arrival Board"**
+### Cover and reading order
 
-The visual world borrows the clarity of an airport information system: deep enamel blues, luminous amber information, cool white lettering, and a large board that makes a changing timeline easy to scan. Humanist type keeps the voice direct and readable; the dry humour belongs in the account rather than in ornamental UI.
+“Tomorrow. Now available daily.” leads a split editorial cover, paired with the existing airport illustration and a boarding-pass joke. The image is explicitly identified as an illustration. Two entry links offer the short summary and the full account. A horizontal chapter navigation follows the cover and becomes a scrollable strip on smaller screens.
 
-The board gives way to a spacious editorial casebook with pale blue paper, strong section headings, ruled rows, and readable prose. Airport and parcel imagery is illustrative and identified as such. The approved direction rejects a generic complaint-card landing page.
+The short version establishes the historical review date and three counts: five orders, three reported delivered, two without confirmed delivery. The arrival board then shows the five order timelines. Selected contradictions introduce the humor before the phrasebook, order files and correspondence. Practical questions and source notes explain the limitations of the records.
 
-**Key Characteristics:**
+### Voice and evidence
 
-- A public-information board turns dates and outcomes into the visual signature.
-- Enamel blue, cool paper, and amber create a clear light–dark rhythm.
-- Murecho supplies the editorial voice; Chakra gives dates and figures their board character.
-- Thin rules and generous spacing organize evidence without a stack of cards.
-- Illustrative imagery supports the story without presenting itself as documentary evidence.
+Use original deadpan commentary, bureaucratic absurdity and precise reversals. Keep recorded quotes, dates and statuses visibly distinct from invented commentary. The phrasebook uses native disclosure elements and explicitly identifies every translation as satire. A promise of resolution is not an actual resolution; thirty days elapsed for the licences does not establish thirty days of lateness. Avoid claiming the support agent was a bot or that a later delivery was caused by an escalation.
 
-## Colors
+The historical account is reviewed through 6 November 2026. Private correspondence and full identifiers remain outside the repository. Every order and correspondence entry has a stable, unique link. Keep the HTML, Markdown and APIs factually aligned.
 
-The palette is cool and inky, with amber reserved for actions and information that needs to register quickly.
+### Palette, typography and layout
 
-### Primary
+Deep navy, cool paper and amber create alternating sections. Murecho carries the cover and prose; Chakra carries compact labels and board figures. Fonts are self-hosted. Use large, compact headings, thin rules, generous margins and comfortable prose widths. The cover illustration, information board and dark correspondence section supply visual variety without obscuring the text.
 
-- **Enamel Navy** (`navy`, `header-blue`, `deep`): the page foundation, navigation, and dark section backgrounds. Related dark blues create subtle separation between adjacent planes.
-- **Board Blue** (`board-blue`, `board-rule`): the board surface and its crisp divisions.
+At 800 pixels the major columns stack; at 560 pixels the arrival board becomes labeled rows. Buttons have generous targets and restrained corners. Keyboard focus is blue on light surfaces and amber on dark surfaces. The chapter bar and scroll offsets must leave anchored headings visible.
 
-### Secondary
+### Progressive interaction
 
-- **Signal Amber** (`amber`, `amber-hover`, `amber-focus`): primary actions, board dates, and visible keyboard focus. The hover state lightens the action rather than changing its role.
+All narrative text and native disclosures work without JavaScript. Enhancement adds order filtering, phrasebook cycling, reading progress and manual sharing. Filters announce their results, active chapter navigation exposes its current location, and a native dialog provides selectable text when clipboard copying is unavailable. Sharing opens a composer or copies text; it never automatically publishes. Respect reduced-motion preferences.
 
-### Neutral
+The separate game keeps its own styles, scripts, assets, rules and save data. The core page only provides the existing game description and entry link.
 
-- **Cool Light** (`light`, `board-label`): text and labels on dark surfaces, with a softer blue for supporting board information.
-- **Casebook Paper** (`paper`, `note-paper`): pale reading surfaces; the warmer note surface distinguishes a supporting callout.
-- **Editorial Ink** (`ink`, `casebook-ink`, `muted-ink`): dark headings and reading text, with muted blue for dates and supporting information.
-- **Fine Rule** (`rule`): light-surface row dividers.
+### Publication and review
 
-**The Signal Rule.** Use amber to call attention to actions, dates, and key information; keep long-form reading surfaces calm and cool.
-
-## Typography
-
-**Display and body font:** Murecho, with a sans-serif fallback. **Board and figure font:** Chakra, with a sans-serif fallback. Both are served locally by the site.
-
-The pairing balances a humanist editorial voice with the square, public-display character of figures. Large headings are compact and confident; paragraph text has a more open rhythm.
-
-### Hierarchy
-
-- **Display:** the large, tightly set page title uses the `display` token; on smaller screens it changes to `clamp(43px, 11vw, 70px)`.
-- **Headline:** the `headline` token introduces the major casebook sections, with headings limited to about `15ch`.
-- **Title:** the `title` token identifies individual correspondence entries and other substantial blocks.
-- **Body:** the `body` token supports reading, with prose generally constrained to `70ch` and paragraphs set at `1.6` line-height.
-- **Board data:** the `board-data` token sets dates and values in uppercase, tracked Chakra. Board headers use uppercase Murecho with wider tracking; ordinary prose stays in sentence case.
-
-**The Board Voice Rule.** Use Chakra and wide tracking for compact dates and values; keep board labels and extended explanations in Murecho.
-
-## Layout
-
-The opening flows in normal document order: a full-width dark header, then a hero whose illustrative scene sits behind a left-aligned message and the board (up to `68vw` wide), then a pale overview. Nothing is absolutely positioned, so longer copy never collides with the board. The casebook below changes to fluid editorial sections with `clamp(20px, 3.9vw, 76px)` horizontal gutters and generous vertical space. Common reading sections use a `5fr 7fr` split and a `7%` gap; rows use thin dividers and a narrower metadata column.
-
-At `1100px` and below, the board spans the full width and the overview stacks. At `800px` and below, the navigation becomes a disclosure, multi-column editorial content stacks, and the four overview steps become two columns. The board can scroll horizontally at intermediate widths. At `600px` and below, each board row becomes a two-column labeled record, with the item and status spanning the row. Keep the board's relationship between item, promised or ordered date, reported delivery, and status clear at every size.
-
-## Elevation & Depth
-
-The site is predominantly flat. Depth comes from the dark-to-light section rhythm, restrained tonal planes, borders, and the gradient that protects text over the illustrative scene. The mobile navigation menu alone uses a shadow (`0 10px 24px rgba(0, 0, 0, 0.22)`) to separate an open overlay from the page.
-
-## Shapes
-
-The board and primary buttons are softly rounded rectangles (`10px` and `9px` respectively), while the supporting notice panel uses an `8px` radius. Step icons sit in circles. Elsewhere, straight one-pixel rules and open rows carry structure; corners and shadows are not used to turn every piece of content into a card.
-
-## Components
-
-- **Primary action:** amber, dark text, bold Murecho, and a minimum `44px` height. Hover lightens the fill and lifts the button by `2px`; reduced-motion preferences remove the transition and lift.
-- **Navigation:** deep-blue bar with a bold wordmark, inline desktop links, and a compact amber action. The mobile menu is a native disclosure with a minimum `44px` summary target.
-- **Arrival board:** a rounded dark surface with a title strip, uppercase column labels, ruled table, amber date and status values, and linked item names. Its mobile form retains labels and reading order.
-- **Overview steps and supporting note:** circular pale-blue icon fields organize a short sequence; a warm, rounded panel distinguishes the priority-support note.
-- **Editorial rows:** order and message entries use generous vertical padding, a metadata column, and horizontal rules instead of individual cards.
-- **Question disclosure:** native `details` and `summary` elements make each question an accessible, ruled row.
-
-Links and the scrollable board receive a `3px` amber focus outline with a `4px` offset. Board rows animate into place only when reduced motion is not requested; the effect uses a short upward reveal and small stagger.
-
-## Do's and Don'ts
-
-### Do:
-
-- **Do** preserve the clear distinction between board data, editorial prose, and supporting notes.
-- **Do** use amber for meaningful actions and compact high-signal information.
-- **Do** retain visible keyboard focus, semantic table relationships, and reduced-motion behavior.
-- **Do** label illustrative imagery so it cannot be mistaken for the documented events.
-
-### Don't:
-
-- **Don't** replace the board and ruled editorial structure with a generic complaint-card layout.
-- **Don't** use the board's uppercase, tracked figure style for long paragraphs.
-- **Don't** remove the responsive labels that connect each mobile date to its meaning.
+Use a concise descriptive search title, a factual description and explicit social metadata. Connected structured data describes the site and article using the canonical production domain and the recorded review date. Keep historical dates accurate when making visual changes. `/docs/layout-preview.html` is a noindex developer surface for responsive inspection at common widths, not public navigation.

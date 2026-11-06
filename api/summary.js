@@ -4,9 +4,9 @@ const CASE = {
   source: "https://avoidflipkart.com/",
   orders: [
     { item: "Logitech MX Vertical mouse", promised: "2026-10-15", reportedDelivery: "2026-10-21", status: "delivered", lateDays: 6 },
-    { item: "Microsoft 365 Personal (5 licences)", ordered: "2026-09-25", reportedDelivery: "2026-10-25", status: "delivery reported", lateDays: 30 },
+    { item: "Microsoft 365 Personal (5 licences)", ordered: "2026-09-25", reportedDelivery: "2026-10-25", status: "delivery reported", daysFromOrderToReportedDelivery: 30 },
     { item: "TP-Link RE200 extender", promised: "2026-10-22", reportedDelivery: "2026-10-29", status: "delivered", lateDays: 7 },
-    { item: "Acer ZC.A01SI.179 laptop stand", promised: "2026-10-22", originalOrderCancelled: "2026-11-04", replacementExpected: "2026-11-11", status: "replacement pending" },
+    { item: "Acer ZC.A01SI.179 laptop stand", firstPromised: "2026-10-21", promised: "2026-10-22", originalOrderCancelled: "2026-11-04", replacementExpected: "2026-11-11", status: "replacement pending" },
     { item: "Philips MG3760/33 trimmer", ordered: "2026-10-28", expected: "2026-11-04", status: "out for delivery at review" }
   ],
   complaints: {
