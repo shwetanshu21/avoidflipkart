@@ -50,17 +50,6 @@
       ]
     },
     {
-      "source": "/",
-      "has": [
-        {
-          "type": "header",
-          "key": "accept",
-          "value": ".*[Tt]ext/[Mm]arkdown.*"
-        }
-      ],
-      "headers": []
-    },
-    {
       "source": "/.well-known/api-catalog",
       "headers": [
         {
