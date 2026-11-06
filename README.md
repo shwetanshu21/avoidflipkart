@@ -1,6 +1,12 @@
 # Avoid Flipkart
 
-An independent, evidence-led customer account of delivery delays and support correspondence. The documented casebook is a buildless static website made with HTML and CSS; the airport and product images are illustrations. The browser game adds dependency-free JavaScript.
+An independent, evidence-led customer account of delivery delays and support correspondence. The documented casebook is a buildless static website made with HTML, CSS and progressive JavaScript; the airport and product images are illustrations. The browser game adds dependency-free JavaScript.
+
+## Core casebook
+
+The root page opens with a satirical editorial cover, a short factual summary and a filterable five-order arrival board. The corporate-to-human phrasebook explicitly labels its translations as satire. Unique section links connect the highlights, individual order files, correspondence, verdict, practical answers and source notes. The record remains dated **6 November 2026**; this is historical reporting, not live tracking.
+
+`index.html` contains the complete readable account. `styles.css` supplies the responsive navy, pale-paper and amber design. `site.js` progressively adds board filters, phrasebook cycling, reading progress and manual sharing; the article and native disclosures work without JavaScript. `index.md` is the synchronized Markdown edition, and `api/summary.js` and `api/mcp.js` expose the factual record. Thirty days for the Microsoft licences means order-to-reported-delivery time; it is not a lateness claim.
 
 ## CLOSED. — the game
 
@@ -62,6 +68,8 @@ From a checkout of this repository, run `python -m http.server 4173` and open `h
 
 Alternatively, with Node.js 22 or newer, use `npm run dev` and open the printed URL. The development server accepts `--host` and `--port` arguments, e.g. `npm run dev -- --port 4173`. Visit `/game/` for the game. The local static servers do not emulate Vercel's serverless API or content-negotiation proxy.
 
+For responsive layout checks, open `/docs/layout-preview.html` on the local server. Its same-origin frame offers 360, 390, 768 and 1280 pixel widths. This developer page is marked `noindex` and is not linked from the public navigation.
+
 ### Verify
 
 Run `npm test` with Node.js 22 or newer. No dependency installation is needed for the game or its tests. The built-in Node test runner checks the complete case library, Express curation, reply prose without scoring hints, scoring, combos, management heat, promotions, no-repeat dealing, shift reviews, achievements, final victory, three-question HR reviews, termination, separate career modes and version 1 save migration. The existing Vercel deployment workflow runs these tests before building and deploying a push to `main`.
@@ -89,7 +97,9 @@ Adding a new scenario requires six distinct `development | evidence` entries and
 
 ## Deploy and search metadata
 
-The site is published at `https://avoidflipkart.com/`. The canonical URL, Open Graph/Twitter card (`og-image.jpg`, 1200×630), `Article` structured data, `sitemap.xml` and `robots.txt` all use that address; update them together if the domain changes. When content changes, update `dateModified`/`article:modified_time` in `index.html` and `lastmod` in `sitemap.xml`. After deployment, submit the sitemap in Google Search Console and Bing Webmaster Tools. Indexing and ranking are controlled by search engines.
+The site is published at `https://avoidflipkart.com/`. The canonical URL, Open Graph/Twitter card (`og-image.jpg`, 1200×630), connected `WebSite`, `WebPage`, `Article` and `Organization` structured data, `sitemap.xml` and `robots.txt` all use that address; update them together if the domain changes. When content changes, update `dateModified`/`article:modified_time` in `index.html` and `lastmod` in `sitemap.xml`. After deployment, submit the sitemap in Google Search Console and Bing Webmaster Tools. Indexing and ranking are controlled by search engines.
+
+`/index.html` permanently redirects to `/`. The Markdown edition has an HTTP canonical link to the HTML account, and the existing Markdown content-negotiation route remains available. Keep the HTML, Markdown and read-only API facts aligned when updating the record.
 
 The casebook's illustrative images are served as WebP. Their full-resolution source PNGs are kept outside the repository.
 

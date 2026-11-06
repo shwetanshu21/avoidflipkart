@@ -2,13 +2,13 @@ const ORDERS = [
   { id: "mouse", item: "Logitech MX Vertical mouse", promised: "2026-10-15", reportedDelivery: "2026-10-21", status: "delivered, six days late" },
   { id: "licences", item: "Microsoft 365 Personal, five licences", ordered: "2026-09-25", reportedDelivery: "2026-10-25", status: "delivery reported thirty days after ordering" },
   { id: "extender", item: "TP-Link RE200 extender", promised: "2026-10-22", reportedDelivery: "2026-10-29", status: "delivered, seven days late" },
-  { id: "stand", item: "Acer ZC.A01SI.179 laptop stand", promised: "2026-10-22", status: "original order cancelled 2026-11-04; replacement expected 2026-11-11" },
+  { id: "stand", item: "Acer ZC.A01SI.179 laptop stand", firstPromised: "2026-10-21", promised: "2026-10-22", status: "original order cancelled 2026-11-04; replacement expected 2026-11-11" },
   { id: "trimmer", item: "Philips MG3760/33 trimmer", ordered: "2026-10-28", expected: "2026-11-04", status: "out for delivery at the 2026-11-06 review" }
 ];
 
 const SUMMARY = [
   "Avoid Flipkart is an independent, documented account of five Flipkart orders placed in September and October 2026.",
-  "Three arrived late: the mouse by 6 days, the extender by 7 days, and the Microsoft 365 licences by 30 days.",
+  "The mouse arrived 6 days late and the extender 7 days late. Delivery of the Microsoft 365 licences was reported 30 days after ordering.",
   "The Acer stand was cancelled on 4 November with a replacement expected on 11 November.",
   "The Philips trimmer was still out for delivery on 6 November.",
   "Two complaints were marked resolved on 6 November; the Logitech issue remained open.",

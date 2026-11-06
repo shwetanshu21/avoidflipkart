@@ -1,5 +1,12 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    }
+  ],
   "proxy": {
     "entrypoint": "proxy.js",
     "matcher": [
@@ -51,12 +58,7 @@
           "value": ".*[Tt]ext/[Mm]arkdown.*"
         }
       ],
-      "headers": [
-        {
-          "key": "x-markdown-tokens",
-          "value": "8350"
-        }
-      ]
+      "headers": []
     },
     {
       "source": "/.well-known/api-catalog",
@@ -75,12 +77,12 @@
       "source": "/index.md",
       "headers": [
         {
-          "key": "Content-Type",
-          "value": "text/markdown; charset=utf-8"
+          "key": "Link",
+          "value": "<https://avoidflipkart.com/>; rel=\"canonical\""
         },
         {
-          "key": "x-markdown-tokens",
-          "value": "8350"
+          "key": "Content-Type",
+          "value": "text/markdown; charset=utf-8"
         }
       ]
     },
