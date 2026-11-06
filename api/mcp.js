@@ -56,8 +56,20 @@ function callTool(name, args) {
   return toolResult("Unknown tool: " + name, true);
 }
 
+const ALLOWED_ORIGINS = new Set(["https://avoidflipkart.com", "https://www.avoidflipkart.com"]);
+const SUPPORTED_VERSIONS = new Set(["2025-06-18", "2025-03-26", "2024-11-05"]);
+
 export default function handler(request, response) {
-  response.setHeader("Access-Control-Allow-Origin", "*");
+  const headers = request.headers || {};
+  const origin = headers.origin;
+  if (origin && !ALLOWED_ORIGINS.has(origin)) {
+    response.status(403).json(error(null, -32000, "Origin not allowed."));
+    return;
+  }
+  if (origin) {
+    response.setHeader("Access-Control-Allow-Origin", origin);
+    response.setHeader("Vary", "Origin");
+  }
   response.setHeader("Access-Control-Allow-Headers", "Content-Type, Accept, MCP-Protocol-Version");
   response.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   if (request.method === "OPTIONS") {
@@ -66,6 +78,12 @@ export default function handler(request, response) {
   }
   if (request.method !== "POST") {
     response.status(405).setHeader("Allow", "POST, OPTIONS").json(error(null, -32000, "Use POST with JSON-RPC."));
+    return;
+  }
+
+  const version = headers["mcp-protocol-version"];
+  if (version && !SUPPORTED_VERSIONS.has(version)) {
+    response.status(400).json(error(null, -32000, "Unsupported MCP-Protocol-Version: " + version));
     return;
   }
 
