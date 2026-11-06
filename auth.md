@@ -25,8 +25,8 @@ Anonymous access over HTTPS. No credential is requested or accepted.
 ## Credential use
 
 None. The API is public and read-only. If a future endpoint requires
-authentication, this file and `/.well-known/oauth-protected-resource` will name
-the authorization server before that endpoint is published.
+authentication, this file will name the authorization server before that
+endpoint is published.
 
 ## Contact
 
