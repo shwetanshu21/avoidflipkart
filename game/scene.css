@@ -1,144 +1,164 @@
-/* The office is an original vector illustration; no network assets required. */
+/* Original cel-cartoon cast. Portraits crop the exact same local artwork. */
 .office-scene {
+  position: relative;
   display: block;
   width: 100%;
-  height: auto;
   overflow: hidden;
   isolation: isolate;
-  shape-rendering: geometricPrecision;
+  background: #071a2d;
 }
 
-.office-scene .scene-rain {
-  animation: office-rain 2.4s linear infinite;
+.scene-crew {
+  aspect-ratio: 3 / 2;
+  margin: 0;
+  border-radius: inherit;
 }
 
-.office-scene .scene-steam {
-  animation: office-steam 4s ease-in-out infinite;
-  transform-origin: 462px 341px;
+.scene-crew .scene-crew__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: 50% 44%;
+  user-select: none;
 }
 
-.office-scene .scene-steam path:nth-child(2) {
-  animation: office-steam-drift 3.6s ease-in-out infinite reverse;
+.scene-crew .scene-crew__edge {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 0 1px #ffc62c25, inset 0 -38px 45px -42px #071a2d;
 }
 
-.office-scene .scene-head {
-  transform-origin: 387px 277px;
-  animation: office-breathe 5.6s ease-in-out infinite;
+.scene-crew .scene-crew__lamplight {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 33% 36%, #ffcb3122 0, transparent 15%), radial-gradient(ellipse at 63% 34%, #ffc62c17 0, transparent 15%);
+  mix-blend-mode: screen;
+  animation: crew-lamplight 6s ease-in-out infinite;
 }
 
-.office-scene .scene-screen-cursor {
-  animation: office-cursor 1.35s steps(1, end) infinite;
+.scene-office {
+  aspect-ratio: 4 / 3;
 }
 
-.office-scene .scene-screen-check {
-  animation: office-screen 7s ease-in-out infinite;
+.scene-office .scene-crew__image {
+  object-position: 50% 40%;
 }
 
-.office-scene .scene-clock-hand {
-  transform-origin: 535px 58px;
-  animation: office-clock 60s linear infinite;
+.scene-office .scene-office__floor {
+  position: absolute;
+  bottom: 13px;
+  left: 13px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px 7px;
+  max-width: calc(100% - 26px);
+  padding: 9px 12px;
+  border: 1px solid #ffc62c75;
+  border-radius: 6px;
+  color: #ffc62c;
+  background: #071a2dee;
+  box-shadow: 0 3px 0 #071a2d80;
+  font: 600 9px/1.4 ui-monospace, SFMono-Regular, Consolas, monospace;
+  letter-spacing: 1.3px;
 }
 
-.office-scene .scene-plant {
-  transform-origin: 578px 431px;
-  animation: office-plant 8s ease-in-out infinite;
+.scene-office .scene-office__floor b {
+  margin-left: 2px;
+  color: #fff3d2;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: .1px;
 }
 
-.office-scene .scene-ha {
+.scene-office .scene-office__floor-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #ffc62c;
+  box-shadow: 0 0 10px #ffc62c90;
+}
+
+.scene-office .scene-office__watch {
+  position: absolute;
+  top: 13px;
+  left: 13px;
+  padding: 7px 10px;
+  border: 2px solid #082442;
+  background: #ffc62c;
+  color: #071a2d;
+  border-radius: 4px;
+  font: 800 10px/1.4 ui-monospace, SFMono-Regular, Consolas, monospace;
+  box-shadow: 3px 3px 0 #071a2d;
+  transform: rotate(-3deg);
+  animation: crew-notice .3s ease-out both;
+}
+
+.scene-office .scene-office__laugh {
+  position: absolute;
+  top: 8%;
+  right: 8%;
+  display: grid;
+  gap: 5px;
+  color: #ffc62c;
+  font: 900 17px/1 Impact, 'Arial Black', sans-serif;
+  -webkit-text-stroke: .6px #071a2d;
+  text-shadow: 1px 2px 0 #071a2d;
+  pointer-events: none;
+}
+
+.scene-office .scene-office__laugh i {
+  font-style: normal;
   opacity: 0;
-  animation: office-laugh 4.5s ease-out infinite;
+  animation: crew-laugh 2.7s ease-out infinite;
 }
 
-.office-scene .scene-ha-two {
-  animation-delay: .22s;
+.scene-office .scene-office__laugh i:nth-child(2) { animation-delay: .18s; margin-left: 11px; }
+.scene-office .scene-office__laugh i:nth-child(3) { animation-delay: .36s; margin-left: 20px; }
+
+.scene-portrait {
+  position: relative;
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 56px;
+  height: 56px;
+  overflow: hidden;
+  isolation: isolate;
+  vertical-align: middle;
+  border: 2px solid #ffc62c;
+  border-radius: 14px;
+  background: #082442;
+  box-shadow: 0 2px 0 #071a2d;
 }
 
-.office-scene .scene-ha-three {
-  animation-delay: .44s;
+.scene-portrait > img {
+  position: absolute;
+  display: block;
+  height: auto;
+  max-width: none;
+  user-select: none;
+  pointer-events: none;
 }
 
-.office-scene .scene-laughing .scene-head {
-  animation: office-villain 4.5s ease-in-out infinite;
-}
+.scene-portrait--agent > img { width: 320%; left: -102.083%; top: -5.208%; }
+.scene-portrait--hr > img { width: 393.846%; left: -29.487%; top: -20.513%; }
+.scene-portrait--executive > img { width: 393.846%; left: -253.846%; top: -39.744%; }
+.scene-hr { width: 80px; height: 80px; border-radius: 18px; }
 
-.office-scene.scene-mood-promotion .scene-head {
-  animation: office-villain 1.5s ease-in-out 2;
-}
-
-.office-scene .scene-manager {
-  animation: office-manager .35s ease-out both;
-  transform-origin: 105px 300px;
-}
-
-.office-scene.scene-mood-audit .scene-screen-check {
-  animation: office-cursor 1s steps(1, end) infinite;
-}
-
-@keyframes office-rain {
-  from { transform: translate(0, -15px); }
-  to { transform: translate(-12px, 20px); }
-}
-
-@keyframes office-steam {
-  0%, 100% { transform: translateY(2px) scaleX(.95); opacity: .25; }
-  50% { transform: translateY(-3px) scaleX(1.1); opacity: .6; }
-}
-
-@keyframes office-steam-drift {
-  0%, 100% { transform: translateX(0); }
-  50% { transform: translateX(3px); }
-}
-
-@keyframes office-breathe {
-  0%, 100% { transform: translateY(0) rotate(0); }
-  50% { transform: translateY(1.2px) rotate(.7deg); }
-}
-
-@keyframes office-cursor {
-  0%, 55% { opacity: 1; }
-  56%, 100% { opacity: 0; }
-}
-
-@keyframes office-screen {
-  0%, 88%, 100% { opacity: 1; }
-  92%, 96% { opacity: .5; }
-}
-
-@keyframes office-clock {
-  to { transform: rotate(360deg); }
-}
-
-@keyframes office-plant {
-  0%, 100% { transform: rotate(-.25deg); }
-  50% { transform: rotate(.45deg); }
-}
-
-@keyframes office-laugh {
-  0%, 12% { opacity: 0; translate: 0 4px; }
-  20%, 40% { opacity: .85; translate: 0 0; }
-  57%, 100% { opacity: 0; translate: 1px -9px; }
-}
-
-@keyframes office-villain {
-  0%, 12%, 52%, 100% { transform: rotate(0); }
-  20%, 32%, 44% { transform: rotate(-4deg) translateY(-1px); }
-  26%, 38% { transform: rotate(-2deg) translateY(1px); }
-}
-
-@keyframes office-manager {
-  from { opacity: 0; transform: translateY(5px) scale(.95); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
+@keyframes crew-lamplight { 0%, 100% { opacity: .55; } 50% { opacity: 1; } }
+@keyframes crew-laugh { 0%, 12% { opacity: 0; transform: translateY(4px) rotate(-5deg); } 22%, 50% { opacity: 1; transform: translateY(0) rotate(2deg); } 75%, 100% { opacity: 0; transform: translateY(-8px) rotate(5deg); } }
+@keyframes crew-notice { from { opacity: 0; transform: translateY(-5px) rotate(-8deg) scale(1.1); } to { opacity: 1; transform: translateY(0) rotate(-3deg) scale(1); } }
 
 @media (prefers-reduced-motion: reduce) {
-  .office-scene *,
-  .office-scene *::before,
-  .office-scene *::after {
+  .office-scene *, .office-scene *::before, .office-scene *::after,
+  .scene-portrait *, .scene-portrait *::before, .scene-portrait *::after {
     animation: none !important;
     transition: none !important;
   }
-
-  .office-scene .scene-ha {
-    opacity: .8;
-  }
+  .scene-office .scene-office__laugh i { opacity: 1; }
 }

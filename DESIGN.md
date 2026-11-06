@@ -83,11 +83,47 @@ components:
 
 ## CLOSED game extension
 
-The playable game at `/game/` has its own visual language, while the documented casebook retains the system below. Its direction is a late-night office diorama: dark ink (`#101b25`), warm case-file paper (`#f6f1e6`), peach actions (`#f4a577`), and mint corporate approval (`#a8d6b6`). Murecho carries readable narrative; Chakra carries administrative labels and scores.
+The playable game at `/game/` carries the site's original blue-and-yellow identity into a fictional customer-care office. The documented casebook retains the design system below. Keep fictional game conversations and policies visibly separate from that account.
 
-Each rank upgrades an original animated SVG office. Cases sit on a pale, subtly torn paper surface beside that office; four distinct response cards form the primary interaction. Case evidence is a disclosure, performance reviews and career information use native modal dialogs, and visible focus states and reduced-motion settings apply throughout. The game has no external font or image fetches.
+### Palette and typography
 
-Management heat means suspicion of employee competence: genuine help raises heat, ridiculous excuses cool it, and the most absurd response earns the highest base reward. Keep this distinction clear in both language and color. Fictional game cases must remain visibly separate from the documentary account.
+Use deep navy `#071a2d` for the surrounding workspace, enamel navy `#082442` for the frame, royal blue `#1264bd` for the support application's header and selected folder, and signal yellow `#ffc62c` for primary actions, scores and focus. The monitor's reading surface is cool paper `#edf8fc`, with dark editorial ink `#0b2142`. These are the same blue, pale-paper and amber relationships as the original site; the game adds stronger blue application chrome.
+
+Murecho carries the customer's message, response text and headings. Chakra carries compact labels, reference numbers, timers and performance figures. Keep long replies in sentence case, give them comfortable line height and allow their containers to grow. Both fonts are served locally.
+
+### Original cartoon cast
+
+The visual anchor is an original, generated retro cartoon illustration: a confident support agent in a headset, an unimpressed HR officer with a clipboard, and a delighted executive. Midcentury television-animation shapes, dark outlines and a painted office background supply expression without replacing the interface with decoration. The art uses navy, blue and amber, with warm skin tones and cream shirts.
+
+The welcome screen shows the full cast. Employee portraits, HR reviews and later-rank reactions crop the same artwork so the characters remain consistent. Rank labels, lamp glow and laughter effects add restrained animation; the illustration is not a set of seven separate office scenes. Production images are local WebP assets in two sizes. [Artwork notes](game/assets/ART_DIRECTION.md) record their generation, provenance and rendering API.
+
+### The monitor is the workplace
+
+The main interaction takes place inside a physical monitor frame with a camera, bezel and stand. Its blue application header leads into an employee sidebar and an inbox. The sidebar holds the player portrait, rank, folders, promotion progress and an internal memo. The inbox presents the customer, order reference, prior escalations, subject, first-person message and expandable evidence. Four replies sit beneath it in the reply composer.
+
+After sending, show the selected message as a sent reply, followed by the closure stamp, score change and consequences. The surrounding performance strip tracks the career without competing with the complaint. Career information, the handbook and sharing use native modal dialogs. The responsive layout simplifies the monitor and stacks the reply choices while preserving readable messages, the case context and keyboard access.
+
+### Equal choices and delayed feedback
+
+Every customer reply uses the same button style, type, border and prominence. Do not show kind labels, point previews, coloured answer categories, an empathy warning or a suggested choice before the player answers. Deterministic shuffling prevents a fixed button position from standing in for reading the case. The distinction between answers belongs in the prose; the effect becomes visible afterward.
+
+Management heat means suspicion of employee competence. Genuine help raises heat and costs approval points; ridiculous closures cool heat, and the most absurd answer earns the highest base reward. Keep this inversion clear in the handbook and result feedback, without turning the reply composer into an answer key.
+
+At 100% heat, the HR officer conducts three questions. Their options also have equal visual treatment. Collect all three responses before revealing the verdict: any empathetic answer ends the run with a termination report; a pass clears heat to zero and returns the player to the career. Pending HR reviews take precedence over promotion or victory celebrations.
+
+### Modes, continuity and shareable results
+
+The welcome screen offers two distinct entry points. Express is a complete 14-case career with two curated conversations at each of seven ranks and 56 individually written replies. Full Career draws from 840 cases, with 120 per rank, and uses point and closure thresholds for promotion. Express advances after two handled cases at each rank. Explain this difference at selection time and keep progress displays appropriate to the selected mode.
+
+Each mode has its own version 2 browser save and restart action. Valid version 1 careers continue as Full Career. Preserve stable content IDs and restore the current case, result or HR question consistently so a reload does not change the decision being made. The supplied creative reference contains examples and matrices, not 750 expanded records; [content notes](game/CONTENT.md) explain the actual library and curation.
+
+Sharing begins with an explicit player action. Offer the X post composer, native share sheet, copyable challenge and a downloadable 1200 × 630 PNG career or termination card. Use the same navy, yellow, Murecho and Chakra system for the card. Keep its score, closed-case count and rank readable. The player chooses what to publish; no action automatically posts a result.
+
+### Motion and access
+
+Retain visible amber focus, the skip link, semantic buttons, evidence disclosures, descriptive artwork alternatives and native dialog behaviour. Decorative marks and effects should be hidden from assistive technology. Honour reduced-motion preferences for scene effects, message arrivals, stamps, confetti and scrolling. Sound is optional and synthesized locally.
+
+The timer counts active case time. Pause it for results, dialogs and hidden tabs; returning from a hidden tab requires an explicit resume. A slow reply forfeits speed rewards but does not automatically fail the case. Never use animation, colour or sound as the only carrier of a decision's outcome.
 
 ## Overview
 

@@ -23,6 +23,9 @@ function note(frequency, delay, duration, type = 'sine', volume = 0.05, endFrequ
   oscillator.start(start); oscillator.stop(start + duration + 0.02);
 }
 export function playSound(name) {
+  if (name === 'notification') { note(659, 0, .14, 'sine', .06); note(880, .12, .22, 'sine', .04); }
+  if (name === 'hr') { note(310, 0, .35, 'triangle', .07, 210); note(310, .42, .35, 'triangle', .07, 210); }
+  if (name === 'fired') [330, 294, 262, 196].forEach((f, i) => note(f, i * .22, .32, 'triangle', .07));
   if (name === 'stamp') { note(110, 0, .13, 'triangle', .17, 35); note(620, .035, .08, 'square', .025, 180); }
   if (name === 'paper') { note(720, 0, .05, 'triangle', .035, 220); note(880, .04, .06, 'triangle', .025, 330); }
   if (name === 'help') { note(330, 0, .2, 'triangle', .07); note(247, .12, .3, 'triangle', .07); }

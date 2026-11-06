@@ -220,11 +220,13 @@ There is a difference between an email being received and a company being reache
 
 ## CLOSED. — The customer care career simulator
 
-Play the full browser game at [avoidflipkart.com/game/](https://avoidflipkart.com/game/).
+Play [CLOSED at avoidflipkart.com/game/](https://avoidflipkart.com/game/).
 
-Start as a Flipkart customer-care executive and give increasingly ridiculous excuses to close fictional complaints. Fast closures build combos and corporate approval. Actually solving a problem loses points and raises management heat. Climb seven ranks through senior support, team lead, grievance officer, operations director and Flipkart CEO to become Walmart CEO, complete a global career and continue in endless mode.
+Clock in as a Flipkart customer-care executive. Read complaints on your support monitor, send increasingly ridiculous excuses, and fail upwards through seven ranks to Walmart CEO. Fast closures build approval and combos. Actually helping costs points and raises HR suspicion. At 100% heat, HR asks three questions; show empathy and you are fired.
 
-There are 120 cases per rank, 840 in total, with four responses each, illustrated offices, shift reviews, achievements, optional sound and browser-local saves. All game cases, customers, memos and conversations are invented satire, separate from this documented account.
+Choose **Express** for a 14-case sprint with two cases per promotion, or **Full Career** for points and closure targets drawn from 120 cases per rank, 840 total. Full Career continues in endless mode after the final Walmart milestone. The modes save separately in your browser.
+
+The blue-and-yellow workstation features an original retro cartoon cast, neutral reply choices with consequences revealed after sending, optional sound, achievements, and shareable career or termination reports. All cases, characters, policies and conversations are fictional satire, separate from the documented account below.
 
 ## The verdict.
 

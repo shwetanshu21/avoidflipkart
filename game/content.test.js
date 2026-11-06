@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { CASES, CASES_PER_LEVEL, LEVELS, TIPS } from './content.js';
+import { CASES, CASES_PER_LEVEL, EXPRESS_CASE_IDS, LEVELS, TIPS } from './content.js';
 
 const casesFor = levelId => CASES.filter(item => item.levelId === levelId);
 const wordCount = value => value.trim().split(/\s+/u).length;
@@ -59,7 +59,7 @@ test('every case provides four complete and readable choices with persistent IDs
       assert.ok(!allChoiceIds.has(choice.id), choice.id);
       allChoiceIds.add(choice.id);
       assert.ok(choice.label && choice.reply && choice.outcome, choice.id);
-      assert.ok(wordCount(choice.text) <= 40, `${choice.id}: reply is too long`);
+      assert.ok(wordCount(choice.text) <= 60, `${choice.id}: reply is too long`);
       assert.ok(wordCount(choice.label) <= 10, `${choice.id}: action label is too long`);
       assert.ok(Number.isFinite(choice.basePoints) && Number.isFinite(choice.heat), choice.id);
     }
@@ -115,4 +115,55 @@ test('playable copy is complete, original-labelled and free of unexpanded placeh
   }
   assert.ok(TIPS.some(tip => /fiction/iu.test(tip)));
   assert.ok(TIPS.some(tip => /helping raises management heat/iu.test(tip)));
+});
+
+
+test('Express is fourteen individually written conversations spanning every career level', () => {
+  assert.deepEqual(Object.keys(EXPRESS_CASE_IDS), LEVELS.map(level => level.id));
+  const ids = Object.values(EXPRESS_CASE_IDS).flat();
+  assert.equal(ids.length, 14);
+  assert.equal(new Set(ids).size, 14);
+  const replies = new Set();
+  for (const level of LEVELS) {
+    assert.equal(EXPRESS_CASE_IDS[level.id].length, 2);
+    for (const id of EXPRESS_CASE_IDS[level.id]) {
+      const item = CASES.find(candidate => candidate.id === id);
+      assert.ok(item, id);
+      assert.equal(item.levelId, level.id);
+      assert.equal(item.isCurated, true, id);
+      assert.ok(item.customerMessage.length > 80, id);
+      assert.ok(wordCount(item.customerMessage) <= 60, id);
+      assert.ok(item.orderId && item.internalMemo, id);
+      assert.ok(Number.isInteger(item.priorEscalations) && item.priorEscalations > 0, id);
+      for (const choice of item.choices) {
+        assert.ok(!replies.has(choice.text), choice.id);
+        replies.add(choice.text);
+        assert.ok(wordCount(choice.text) <= 60, choice.id);
+      }
+    }
+  }
+  assert.equal(replies.size, 56);
+});
+
+test('reply prose does not expose scoring labels or internal action directions', () => {
+  const hints = /empathy trap|right answer|genuine solution|premium|[+]\d+\s*(?:CSP|points)|base points|resets? (?:your |the )?streak|management heat|double down|respond by|present this as|sign it in gold/iu;
+  for (const item of CASES) {
+    assert.ok(item.customerMessage && item.internalMemo && item.orderId, item.id);
+    assert.ok(Number.isInteger(item.priorEscalations), item.id);
+    for (const choice of item.choices) {
+      assert.doesNotMatch(choice.text, hints, choice.id);
+      assert.doesNotMatch(choice.text, /^(?:Rebrand|Register|Transfer|Launch|Declare|Appoint|Promote|Refund|Replace|Accept|Refer|Invent|Create)\b/u, choice.id);
+    }
+    assert.doesNotMatch(item.customerMessage, /\b(?:enrolled|requires|asks|instructs|directs|leaving|reached) I\b/u, item.id);
+    assert.doesNotMatch(item.customerMessage, /\bI (?:has|is|supplies|provides|misses|tries|finishes|gives|opens|refuses)\b/u, item.id);
+  }
+});
+
+test('reference-inspired scenarios contain distinct developments and specific Indian details', () => {
+  const text = JSON.stringify(CASES);
+  for (const term of ['boarding pass', 'pigeon', 'lemon soaps', 'Mr. Gumdrop', 'Silk Board', 'speed post', 'watchman', 'tiffin', 'Diwali', 'OTP']) {
+    assert.ok(text.includes(term), `Missing scenario detail: ${term}`);
+  }
+  assert.doesNotMatch(text, /Form 27B\/6|drawing of a spider|seven-legged mouse|750 fully|750-case/iu);
+  assert.equal(CASES.filter(item => item.isCurated).length, 15);
 });

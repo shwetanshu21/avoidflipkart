@@ -2,8 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { CASES, LEVELS } from './content.js';
 import {
-  advanceCase, createState, getAchievements, getCurrentCase, getDebrief,
-  getLevel, getPromotionProgress, getShiftDirective, resolveChoice,
+  advanceCase, answerHRQuestion, createState, getAchievements, getCurrentCase, getDebrief,
+  getHRQuestion, getLevel, getPromotionProgress, getRunStats, getShiftDirective, resolveChoice,
   restoreState, serializeState,
 } from './engine.js';
 
@@ -13,9 +13,30 @@ function choose(state, kind = 'risk', elapsedMs = 5_000) {
   return resolveChoice(state, choice.id, elapsedMs);
 }
 
-function play(state, kind = 'risk', elapsedMs = 5_000) {
-  return advanceCase(choose(state, kind, elapsedMs));
+const BUREAUCRATIC = ['hr-01-b', 'hr-02-a', 'hr-03-b'];
+const EMPATHETIC = ['hr-01-a', 'hr-02-b', 'hr-03-c'];
+
+function passReview(state) {
+  while (state.phase === 'review') state = answerHRQuestion(state, BUREAUCRATIC[state.review.index]);
+  return state;
 }
+
+function continueResult(state) {
+  let next = advanceCase(state);
+  if (next.phase === 'review') next = advanceCase(passReview(next));
+  return next;
+}
+
+function play(state, kind = 'risk', elapsedMs = 5_000) {
+  return continueResult(choose(state, kind, elapsedMs));
+}
+
+function triggerReview(mode = 'full') {
+  let state = createState(992, mode);
+  for (let count = 0; count < 3; count += 1) state = play(state, 'help');
+  return choose(state, 'help');
+}
+
 
 function deepFreeze(object) {
   for (const value of Object.values(object)) {
@@ -131,12 +152,15 @@ test('HR audits excessive competence, never extravagant nonsense', () => {
   assert.ok(audited, 'Repeated useful responses must trigger a competence audit');
   assert.equal(audited.pendingResult.kind, 'help');
   assert.equal(audited.audits, 1);
-  assert.equal(audited.heat, 28);
-  assert.ok(audited.pendingResult.auditPenalty > 0);
+  assert.equal(audited.heat, 100);
+  assert.equal(audited.pendingResult.auditPenalty, 0, 'Review replaces the automatic score deduction');
+  assert.equal(audited.pendingReview, true);
+  assert.equal(audited.pendingResult.reviewTriggered, true);
+  assert.equal(audited.pendingResult.points, audited.pendingResult.basePoints);
   assert.match(audited.pendingResult.auditReason, /actual customer service/);
   assert.equal(audited.streak, 0);
   assert.ok(getAchievements(audited).find(({ id }) => id === 'audit').unlocked);
-  state = advanceCase(audited);
+  state = continueResult(audited);
   for (let count = 0; count < 200; count += 1) {
     const result = choose(state, 'risk');
     assert.equal(result.pendingResult.audit, false);
@@ -163,7 +187,7 @@ test('promotions require both the score and closed-case quota; helpful cases do 
   assert.equal(getCurrentCase(promoted).levelId, 'support', 'The answered case remains visible during promotion');
   state = advanceCase(promoted);
   assert.equal(getCurrentCase(state).levelId, 'senior');
-  for (let count = 0; count < 50; count += 1) state = play(state, 'help');
+  for (let count = 0; count < 100; count += 1) state = play(state, 'help');
   assert.equal(state.score, 0);
   assert.equal(state.levelIndex, 1, 'Career titles are never revoked when score drops');
   assert.ok(getAchievements(state).find(({ id }) => id === 'first-promotion').unlocked);
@@ -361,4 +385,236 @@ test('non-finite timer values cannot poison scores or grant a fast-close combo',
     assert.equal(state.streak, 0);
     assert.ok(restoreState(serializeState(state)));
   }
+});
+
+test('HR requires exactly three neutral questions and blocks advancement until all answers are collected', () => {
+  const result = triggerReview();
+  assert.equal(result.phase, 'result');
+  assert.equal(result.pendingReview, true);
+  assert.equal(getHRQuestion(result), null);
+  let state = advanceCase(deepFreeze(result));
+  assert.equal(state.phase, 'review');
+  assert.equal(state.review.index, 0);
+  assert.equal(state.review.questionIds.length, 3);
+  assert.equal(advanceCase(state), state);
+  assert.equal(choose(state), state);
+  assert.equal(answerHRQuestion(state, 'unknown-choice'), state);
+  for (let index = 0; index < 3; index += 1) {
+    const question = getHRQuestion(state);
+    assert.deepEqual(Object.keys(question).sort(), ['choices', 'id', 'prompt']);
+    assert.equal(question.id, state.review.questionIds[index]);
+    for (const choice of question.choices) assert.deepEqual(Object.keys(choice).sort(), ['id', 'text']);
+    assert.deepEqual(restoreState(serializeState(state)), state);
+    assert.deepEqual(getHRQuestion(restoreState(serializeState(state))), question);
+    const previous = deepFreeze(state);
+    state = answerHRQuestion(previous, BUREAUCRATIC[index]);
+    assert.equal(previous.review.index, index);
+    assert.equal(state.review.index, index + 1);
+    assert.equal(state.score, result.score);
+    assert.equal(state.handled, result.handled);
+    if (index < 2) {
+      assert.equal(state.phase, 'review');
+      assert.equal(state.reviewOutcome, null, 'HR provides no per-answer verdict');
+      assert.equal(state.termination, null);
+      assert.equal(answerHRQuestion(state, BUREAUCRATIC[index]), state, 'Stale question answers do nothing');
+    }
+  }
+  assert.equal(state.phase, 'result');
+  assert.equal(state.pendingReview, false);
+  assert.equal(state.pendingResult.hrCleared, true);
+  assert.equal(state.pendingResult.hrFailed, false);
+  assert.equal(state.reviewOutcome.passed, true);
+  assert.equal(state.heat, 0);
+  assert.equal(state.history.length, result.history.length);
+  assert.equal(state.pendingResult.points, result.pendingResult.points);
+  assert.deepEqual(restoreState(serializeState(state)), state);
+  const ready = advanceCase(state);
+  assert.equal(ready.phase, 'case');
+  assert.equal(ready.pendingReview, false);
+  assert.equal(ready.review, null);
+  assert.equal(ready.reviewOutcome, null);
+  assert.equal(ready.handled, state.handled);
+  assert.equal(ready.score, state.score);
+  assert.notEqual(ready.caseId, state.caseId);
+  assert.deepEqual(restoreState(serializeState(ready)), ready);
+});
+
+test('any empathetic HR answer causes game over after question three, with score and run records retained', () => {
+  for (let kindIndex = 0; kindIndex < 3; kindIndex += 1) {
+    const result = triggerReview();
+    let state = advanceCase(result);
+    for (let index = 0; index < 3; index += 1) {
+      state = answerHRQuestion(state, index === kindIndex ? EMPATHETIC[index] : BUREAUCRATIC[index]);
+      if (index < 2) assert.equal(state.phase, 'review', 'Firing is announced only after all three questions');
+    }
+    assert.equal(state.phase, 'gameover');
+    assert.equal(state.review.empathyCount, 1);
+    assert.equal(state.pendingResult.hrFailed, true);
+    assert.equal(state.pendingResult.hrCleared, false);
+    assert.equal(state.pendingReview, false);
+    assert.equal(state.reviewOutcome.passed, false);
+    assert.equal(state.termination.reason, 'empathy-detected');
+    assert.equal(state.termination.questionCount, 3);
+    assert.equal(state.termination.score, result.score);
+    assert.equal(state.termination.handled, result.handled);
+    assert.equal(getRunStats(state).fired, true);
+    assert.equal(advanceCase(state), state);
+    assert.equal(choose(state), state);
+    assert.equal(answerHRQuestion(state, BUREAUCRATIC[2]), state);
+    assert.deepEqual(restoreState(serializeState(state)), state);
+  }
+});
+
+test('Express handles exactly two cases per role, promotes independently of score, and completes at fourteen', () => {
+  let state = createState(456, 'express');
+  const seen = new Set();
+  assert.equal(state.mode, 'express');
+  assert.equal(getPromotionProgress(state).pointsNeeded, 0);
+  assert.equal(getPromotionProgress(state).casesNeeded, 2);
+  for (let count = 1; count <= 14; count += 1) {
+    assert.equal(state.phase, 'case');
+    assert.equal(state.levelIndex, Math.min(6, Math.floor((count - 1) / 2)));
+    assert.ok(!seen.has(state.caseId));
+    seen.add(state.caseId);
+    const result = choose(state, 'help');
+    assert.equal(result.score, 0, 'Helping remains a score penalty, not a promotion blocker in Express');
+    assert.equal(result.handled, count);
+    assert.equal(result.levelIndex, Math.min(6, Math.floor(count / 2)));
+    if (count % 2 === 0 && count < 14) {
+      assert.equal(result.pendingResult.promotedFrom, count / 2 - 1);
+      assert.equal(result.pendingResult.promotedTo, count / 2);
+    }
+    assert.deepEqual(restoreState(serializeState(result)), result);
+    state = continueResult(result);
+    assert.deepEqual(restoreState(serializeState(state)), state);
+  }
+  assert.equal(state.phase, 'complete');
+  assert.equal(state.won, true);
+  assert.equal(state.levelIndex, 6);
+  assert.equal(state.handled, 14);
+  assert.deepEqual(state.levelHandled, [2, 2, 2, 2, 2, 2, 2]);
+  assert.equal(state.pendingResult.won, true);
+  assert.equal(getRunStats(state).casesRemaining, 0);
+  assert.equal(advanceCase(state), state);
+  assert.equal(choose(state), state);
+  assert.equal(createState(456, 'full').handled, 0);
+});
+
+test('a review takes precedence over a promotion or the final Express victory without replaying either', () => {
+  const promotion = triggerReview('express');
+  assert.equal(promotion.pendingResult.promotedTo, 2);
+  assert.equal(promotion.pendingReview, true);
+  const cleared = passReview(advanceCase(promotion));
+  assert.equal(cleared.pendingResult.promotedTo, 2, 'The original promotion receipt remains available exactly once');
+  assert.equal(cleared.handled, 4);
+  assert.equal(advanceCase(cleared).handled, 4);
+
+  let state = createState(665, 'express');
+  // Build 84 heat and preserve it until the last case, which crosses the threshold.
+  for (let count = 1; count <= 14; count += 1) {
+    const kind = count >= 11 ? 'help' : 'risk';
+    const result = choose(state, kind);
+    if (count === 14) {
+      assert.equal(result.heat, 100);
+      assert.equal(result.won, false, 'Victory waits for the HR verdict');
+      assert.equal(result.pendingResult.won, false);
+      const review = advanceCase(result);
+      assert.equal(review.phase, 'review');
+      const passed = passReview(review);
+      assert.equal(passed.won, true);
+      assert.equal(passed.pendingResult.won, true);
+      assert.equal(passed.handled, 14);
+      assert.deepEqual(restoreState(serializeState(passed)), passed);
+      const complete = advanceCase(passed);
+      assert.equal(complete.phase, 'complete');
+      assert.deepEqual(restoreState(serializeState(complete)), complete);
+      let fired = answerHRQuestion(review, EMPATHETIC[0]);
+      fired = answerHRQuestion(fired, BUREAUCRATIC[1]);
+      fired = answerHRQuestion(fired, BUREAUCRATIC[2]);
+      assert.equal(fired.phase, 'gameover');
+      assert.equal(fired.won, false);
+      assert.deepEqual(restoreState(serializeState(fired)), fired);
+    } else state = continueResult(result);
+  }
+});
+
+test('HR save validation rejects invented questions, forged answer histories, skipped reviews, and false verdicts', () => {
+  const valid = answerHRQuestion(advanceCase(triggerReview()), EMPATHETIC[0]);
+  const corruptions = [
+    (s) => { s.mode = 'other'; },
+    (s) => { s.phase = 'case'; },
+    (s) => { s.pendingReview = false; },
+    (s) => { s.review = null; },
+    (s) => { s.review.index = 3; },
+    (s) => { s.review.index = -1; },
+    (s) => { s.review.questionIds[0] = 'hr-missing'; },
+    (s) => { s.review.questionIds = Array(100000).fill('hr-01'); },
+    (s) => { s.review.answers[0] = 'hr-02-a'; },
+    (s) => { s.review.answers.push('hr-02-a'); },
+    (s) => { s.review.empathyCount = 0; },
+    (s) => { s.reviewOutcome = { passed: true }; },
+    (s) => { s.pendingResult.hrCleared = true; },
+    (s) => { s.history.at(-1).hrAnswers = [BUREAUCRATIC[0]]; },
+    (s) => { s.phase = 'complete'; },
+  ];
+  for (const mutate of corruptions) {
+    const corrupted = JSON.parse(serializeState(valid));
+    mutate(corrupted);
+    assert.equal(restoreState(JSON.stringify(corrupted)), null, mutate.toString());
+  }
+  const pending = triggerReview();
+  const skipped = JSON.parse(serializeState(pending));
+  skipped.phase = 'case';
+  skipped.pendingResult = null;
+  skipped.pendingReview = false;
+  assert.equal(restoreState(JSON.stringify(skipped)), null);
+});
+
+function asLegacy(state) {
+  const copy = JSON.parse(serializeState(state));
+  copy.version = 1;
+  for (const key of ['mode', 'pendingReview', 'review', 'reviewOutcome', 'termination']) delete copy[key];
+  for (const result of [...copy.history, ...(copy.pendingResult ? [copy.pendingResult] : [])]) {
+    for (const key of ['rulesVersion', 'reviewTriggered', 'hrCleared', 'hrFailed', 'hrAnswers']) delete result[key];
+  }
+  return copy;
+}
+
+test('valid V1 Full careers migrate, preserving existing audit deductions and pending results', () => {
+  let state = createState(332);
+  for (let count = 0; count < 8; count += 1) state = play(state);
+  for (let count = 0; count < 3; count += 1) state = play(state, 'help');
+  const result = choose(state, 'help');
+  assert.equal(result.pendingReview, true);
+  const legacy = asLegacy(result);
+  const penalty = 320 + legacy.levelIndex * 80;
+  legacy.score = Math.max(0, legacy.score - penalty);
+  legacy.heat = 28;
+  const oldPoints = legacy.pendingResult.points;
+  for (const entry of [legacy.pendingResult, legacy.history.at(-1)]) {
+    entry.auditPenalty = penalty;
+    entry.scoreAfter = legacy.score;
+    entry.points = legacy.score - entry.previousScore;
+    entry.heatAfter = 28;
+  }
+  legacy.shiftLedger.points += legacy.pendingResult.points - oldPoints;
+  const migrated = restoreState(JSON.stringify(legacy));
+  assert.ok(migrated);
+  assert.equal(migrated.version, 2);
+  assert.equal(migrated.mode, 'full');
+  assert.equal(migrated.score, legacy.score);
+  assert.equal(migrated.heat, 28);
+  assert.equal(migrated.pendingReview, false, 'An old paid audit must not trigger a new review on migration');
+  assert.equal(migrated.pendingResult.rulesVersion, 1);
+  assert.equal(migrated.phase, 'result');
+  assert.deepEqual(restoreState(serializeState(migrated)), migrated);
+  const next = advanceCase(migrated);
+  assert.equal(next.phase, 'case');
+  assert.equal(next.score, legacy.score);
+  assert.deepEqual(restoreState(serializeState(next)), next);
+  const newResult = choose(next, 'help');
+  assert.equal(newResult.pendingResult.rulesVersion, 2);
+  assert.equal(newResult.pendingResult.auditPenalty, 0);
+  assert.deepEqual(restoreState(serializeState(newResult)), newResult);
+  assert.ok(restoreState(JSON.stringify(asLegacy(createState(1)))));
 });

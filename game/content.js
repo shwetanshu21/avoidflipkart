@@ -1,3 +1,5 @@
+import { REFERENCE_SCENARIOS } from './reference-cases.js';
+
 /**
  * Original, fictional workplace satire. Nothing in this case library describes
  * an actual customer, employee, company policy, or real-world incident.
@@ -16,6 +18,18 @@ export const LEVELS = [
   { id: 'fk-ceo', name: 'Flipkart CEO', shortName: 'Flipkart CEO', company: 'Flipkart', threshold: 16000, quota: 100, channel: 'Boardroom mail', color: '#ffc46b', motto: 'The buck stops here. Refunds do not.' },
   { id: 'walmart-ceo', name: 'Walmart CEO', shortName: 'Walmart CEO', company: 'Walmart', threshold: 22000, quota: 132, channel: 'Global command', color: '#ffe08a', motto: 'Same excuses. Now available in every time zone.' },
 ];
+
+// A complete short career: two deliberately selected conversations per floor.
+// IDs are kept stable so existing saved careers can still locate their cases.
+export const EXPRESS_CASE_IDS = {
+  support: ['support-01-1', 'support-02-1'],
+  senior: ['senior-06-1', 'senior-02-1'],
+  lead: ['lead-05-1', 'lead-20-1'],
+  grievance: ['grievance-01-1', 'grievance-02-1'],
+  director: ['director-01-1', 'director-08-1'],
+  'fk-ceo': ['fk-ceo-07-1', 'fk-ceo-20-1'],
+  'walmart-ceo': ['walmart-ceo-06-1', 'walmart-ceo-11-1'],
+};
 
 export const TIPS = [
   'Close cases quickly to build your combo. Reading is permitted, if not actively encouraged.',
@@ -48,7 +62,7 @@ const STAGES = [
 ];
 
 // Arguments: title, item/service, amount, premise, absurd explanation, genuine
-// remedy, fictional department, reckless policy, six "development | evidence" rows.
+// remedy, fictional department, absurd policy, six "development | evidence" rows.
 function s(title, product, amount, premise, denial, remedy, department, stunt, developments) {
   return { title, product, amount, premise, denial, remedy, department, stunt, developments };
 }
@@ -1180,7 +1194,7 @@ SCENARIOS['fk-ceo'] = [
     ]),
   s('The flagship experience is out of order', 'Premium service launch', '₹2,75,00,000', 'A premium service launches with promises its operational systems cannot support.',
       'Premium describes the promise. Delivery belongs to a future phase of the luxury experience.',
-      'Fix fulfilment before selling the promise and compensate affected subscribers.', 'Premium Possibilities', 'Sell an even more premium plan that includes an apology for the premium plan.', [
+      'Fix fulfilment before selling the promise and compensate affected subscribers.', 'Additional Possibilities', 'Sell an even more premium plan that includes an apology for the premium plan.', [
         'Paying subscribers cannot book the advertised priority pickups. | Subscription terms and booking errors',
         'Engineering records show the booking feature was never completed before launch. | Feature delivery status',
         'Marketing calls the service live while the product roadmap labels it a future experiment. | Marketing claim and roadmap',
@@ -1474,6 +1488,12 @@ SCENARIOS['walmart-ceo'] = [
 ];
 
 
+// Replace selected authored situations in place. This expands each new
+// conversation into six distinct evidence/development records without moving IDs.
+for (const { levelId, index, scenario } of REFERENCE_SCENARIOS) {
+  SCENARIOS[levelId][index] = scenario;
+}
+
 const SCENARIO_ACTIONS = {
   support: [
     'Launch the wireless toaster', 'Activate the stone’s warranty', 'Recognise a photograph as a home',
@@ -1574,72 +1594,110 @@ const DEFLECTIONS = {
     d => `Please start a fresh request with ${d.department}. The previous request has reached its retirement age.`,
   ],
   senior: [
-    d => `Transfer this to ${d.department}. Add “urgent” so the next team can recognise the familiar disappointment.`,
-    d => `Ask ${d.department} to verify whether the evidence is the correct kind of convincing.`,
-    d => `Send both answers to ${d.department}. We require a third opinion before choosing the first.`,
-    d => `Request an impact statement from ${d.department}. The inconvenience must be measured before being ignored.`,
-    d => `Open a priority consultation with ${d.department}; priority is a folder colour, not a deadline.`,
-    d => `Return the file to ${d.department} for a fresh start. Fresh starts do wonders for ageing metrics.`,
+    d => `I have transferred this to ${d.department}. I added “urgent” so they can recognise the familiar disappointment.`,
+    d => `${d.department} will verify whether the evidence is the correct kind of convincing. We cannot proceed on facts alone.`,
+    d => `Both replies are with ${d.department}. We require a third opinion before choosing the first.`,
+    d => `${d.department} will measure the inconvenience. We cannot put it aside until we know its dimensions.`,
+    d => `You have a priority consultation with ${d.department}. Priority determines the folder colour; your folder is now a magnificent red.`,
+    d => `${d.department} has been given the file for a fresh start. Unfortunately your previous waiting time cannot accompany it.`,
   ],
   lead: [
-    d => `Appoint ${d.department} as the action owner. Do not tell them until the next reporting period.`,
-    d => `Commission ${d.department} to count the documents before anyone reads them.`,
-    d => `Create a working group with ${d.department} to harmonise the conflicting explanations.`,
-    d => `Ask ${d.department} for a mitigation plan for the plan’s unfortunate consequences.`,
-    d => `Put the recommendation on ${d.department}’s agenda, immediately after “approve previous agenda.”`,
-    d => `Return the case to ${d.department} for lessons learned. Learning may be scheduled separately.`,
+    d => `${d.department} now owns this action. They will be notified at the next meeting about whether they own it.`,
+    d => `${d.department} will count the documents before anyone reads them. We must establish the size of the response required.`,
+    d => `A working group with ${d.department} will reconcile our explanations. Your problem has been invited as an observer.`,
+    d => `${d.department} is preparing a plan for the consequences of our previous plan. We appreciate your continued supply of consequences.`,
+    d => `Your recommendation is on ${d.department}’s agenda, immediately after “approve previous agenda.” We have not yet approved that item.`,
+    d => `${d.department} is reviewing the lessons learned. Any actual learning will be scheduled after the review.`,
   ],
   grievance: [
-    d => `Refer this to ${d.department}. The referral is our formal response, irrespective of whether they exist.`,
-    d => `Require ${d.department} to authenticate the index of the evidence before accepting the evidence.`,
-    d => `Seek clarification from ${d.department} on whether the contradiction belongs to this jurisdiction.`,
-    d => `Request a separate representation to ${d.department} regarding the consequences of the first representation.`,
-    d => `Forward the review to ${d.department} for a review of whether it requires review.`,
-    d => `Advise a fresh submission to ${d.department}. Preserve every document except the original deadline.`,
+    d => `I have referred this to ${d.department}. This referral constitutes our formal response, regardless of whether they respond.`,
+    d => `${d.department} must authenticate the index of your evidence before we accept the evidence. The index needs its own index.`,
+    d => `${d.department} will establish whether this contradiction belongs to us. We cannot take responsibility for an unallocated contradiction.`,
+    d => `Please submit a separate representation to ${d.department} about the consequences of your first representation.`,
+    d => `${d.department} will review whether your request for review requires review. You will receive a reference for each review.`,
+    d => `Please make a fresh submission to ${d.department}. Include every previous document except the original deadline.`,
   ],
   director: [
-    d => `Create a transformation programme under ${d.department}. Delivery starts after the launch presentation.`,
-    d => `Ask ${d.department} to validate the evidence against the executive summary we already approved.`,
-    d => `Commission ${d.department} to reconcile the facts with the preferred operating narrative.`,
-    d => `Have ${d.department} establish a task force to contain the consequences in a single slide.`,
-    d => `Send the recommendation to ${d.department} for strategic alignment with the absence of a budget.`,
-    d => `Move the issue into ${d.department}’s next-quarter roadmap. The arrow points reassuringly forward.`,
+    d => `${d.department} will launch a transformation programme. Delivery will follow the presentation, subject to the presentation going well.`,
+    d => `${d.department} is checking your evidence against our approved executive summary. We may ask the evidence to submit revisions.`,
+    d => `${d.department} will reconcile the facts with our operating plan. The plan has already received approval, which may save time.`,
+    d => `${d.department} has established a task force to fit the consequences onto one slide. Smaller consequences will receive priority.`,
+    d => `Your recommendation is with ${d.department} for alignment with our budget. The current budget is a carefully protected zero.`,
+    d => `This is now on ${d.department}’s next-quarter roadmap. The arrow points forward; please follow it until further notice.`,
   ],
   'fk-ceo': [
-    d => `Appoint ${d.department} to lead a listening exercise. Ensure the listening has no spending authority.`,
-    d => `Ask ${d.department} for a cleaner chart of the evidence. Preferably one without the evidence.`,
-    d => `Refer the contradiction to ${d.department}. Announce confidence in whatever they eventually avoid saying.`,
-    d => `Commission ${d.department} to produce a white paper on the opportunity hidden inside this failure.`,
-    d => `Have ${d.department} brief the board’s briefing committee before anyone decides anything.`,
-    d => `Place the matter with ${d.department} until the next leadership transition gives it a fresh identity.`,
+    d => `${d.department} will lead a listening exercise. They can hear every concern, although their spending authority is silent.`,
+    d => `${d.department} will prepare a clearer chart of your evidence. The board has requested fewer facts and more white space.`,
+    d => `The contradiction has gone to ${d.department}. We remain confident in whatever they eventually manage to say.`,
+    d => `${d.department} is preparing a white paper about the opportunity inside this failure. The paper will be substantial.`,
+    d => `${d.department} will brief the board’s briefing committee. A decision can be considered once everyone feels adequately briefed.`,
+    d => `${d.department} will hold the matter through our next leadership transition. Your complaint will be introduced to the new furniture.`,
   ],
   'walmart-ceo': [
-    d => `Refer this to ${d.department}. Global scale means the correct desk is always somewhere else.`,
-    d => `Ask ${d.department} to standardise the evidence into a globally interchangeable non-answer.`,
-    d => `Send the contradiction through ${d.department} in all time zones until yesterday owns it.`,
-    d => `Commission ${d.department} to compare the inconvenience across continents before acknowledging any of it.`,
-    d => `Convene ${d.department} for a global summit on the appropriate shape of a future action plan.`,
-    d => `Transfer the file to ${d.department} with an international stamp. Distance adds executive credibility.`,
+    d => `Your file is with ${d.department}. At our global scale, the correct desk is always somewhere else.`,
+    d => `${d.department} will standardise your evidence for every market. We expect the resulting response to travel more easily than the parcel.`,
+    d => `${d.department} is passing this through every time zone until a suitable yesterday can accept responsibility.`,
+    d => `${d.department} will compare your inconvenience across continents. A regional inconvenience must not be resolved before it receives global recognition.`,
+    d => `${d.department} will convene a summit on the shape of a future action plan. The agenda already has several promising shapes.`,
+    d => `${d.department} has received the file with an international stamp. We trust the additional distance demonstrates the seriousness of our attention.`,
   ],
 };
 
+function addressedToCustomer(text) {
+  return text.replace(/the customer’s/gu, 'your').replace(/the customer/gu, 'you')
+    .replace(/customers’/gu, 'your').replace(/premium/giu, 'optional');
+}
+
+function promisedAction(text, pronoun = 'We will') {
+  const reply = addressedToCustomer(text);
+  return `${pronoun} ${reply[0].toLowerCase()}${reply.slice(1)}`;
+}
+
 const STUNT_FRAMES = [
-  text => text,
-  text => `The evidence is persuasive. Respond by doubling down: ${text}`,
-  text => `Make the contradiction official company policy: ${text}`,
-  text => `Turn the additional damage into an exciting initiative: ${text}`,
-  text => `Present this as a breakthrough to management: ${text}`,
-  text => `Sign it in gold ink and close the file: ${text}`,
+  text => promisedAction(text),
+  text => `${promisedAction(text)} Your evidence has helped us reach this decision.`,
+  text => `${promisedAction(text)} This now appears in our updated terms.`,
+  text => `${promisedAction(text)} The additional inconvenience is included at no charge.`,
+  text => `${promisedAction(text)} The board has approved the necessary stationery.`,
+  text => `${promisedAction(text)} Please retain this message as proof of our resolution.`,
 ];
 
 const HELP_FRAMES = [
-  text => text,
-  text => `${text} Accept the evidence already provided.`,
-  text => `${text} Correct the earlier inaccurate response.`,
-  text => `${text} Address the documented consequences too.`,
-  text => `${text} Give a named owner and a realistic deadline.`,
-  text => `${text} Verify completion with the customer before closing.`,
+  text => promisedAction(text, 'I’ll'),
+  text => `${promisedAction(text, 'I’ll')} I can use the evidence you have already provided.`,
+  text => `${promisedAction(text, 'I’ll')} I’ll also correct the earlier inaccurate reply.`,
+  text => `${promisedAction(text, 'I’ll')} I’ll address the documented consequences as part of the same case.`,
+  text => `${promisedAction(text, 'I’ll')} You will have a named owner and a clear update date.`,
+  text => `${promisedAction(text, 'I’ll')} I’ll confirm completion with you before closing the case.`,
 ];
+
+const INTERNAL_MEMOS = [
+  'New case. A human has noticed a difference between the order and reality.',
+  'Evidence arrived. Please resist the temptation to let it influence the conclusion.',
+  'Our replies disagree. Both have already been approved.',
+  'The original inconvenience has developed consequences. Budget unchanged.',
+  'Escalation received. Use the heavier letterhead.',
+  'Final request. Customer appears unreasonably attached to an actual outcome.',
+];
+
+function customerVoice(text) {
+  const verbs = {
+    has: 'have', is: 'am', wants: 'want', asks: 'ask', says: 'say', needs: 'need',
+    receives: 'receive', reports: 'report', requests: 'request', uses: 'use', pays: 'pay',
+    supplies: 'supply', misses: 'miss', provides: 'provide', spots: 'spot', uploads: 'upload',
+    gives: 'give', finishes: 'finish', tries: 'try', selects: 'select', postpones: 'postpone',
+    spends: 'spend', replies: 'reply', stops: 'stop', incurs: 'incur', waits: 'wait',
+    resends: 'resend', responds: 'respond', identifies: 'identify', holds: 'hold',
+    corrects: 'correct', refuses: 'refuse', takes: 'take', makes: 'make', replaces: 'replace',
+    opens: 'open', blocks: 'block', stays: 'stay', orders: 'order', confirms: 'confirm', buys: 'buy',
+  };
+  return text.replace(/The customer’s/gu, 'My').replace(/the customer’s/gu, 'my')
+    .replace(/the customer case/gu, 'my order case').replace(/the customer half/gu, 'my complaint')
+    .replace(/The customer /gu, 'I ').replace(/the customer /gu, 'I ')
+    .replace(/\bI (\w+)\b/gu, (match, verb) => verbs[verb] ? `I ${verbs[verb]}` : match)
+    .replace(/\b(to|for|from|with|told|asked|asks|called|charged|gave|informed|enrolled|leaving|reached|recognises|directs|instructs|requires) I\b/gu, '$1 me')
+    .replace('I need them for an interview tomorrow and has', 'I need them for an interview tomorrow and have');
+}
 
 const CHOICE_LABELS = {
   deny: ['Interpret creatively', 'Reclassify the evidence', 'Stand by the nonsense', 'Redefine the problem', 'Approve your own answer', 'Issue a final non-answer'],
@@ -1704,13 +1762,18 @@ function makeCase(seed, seedIndex, stageIndex, level) {
   const stage = STAGES[stageIndex];
   const id = `${level.id}-${String(seedIndex + 1).padStart(2, '0')}-${stageIndex + 1}`;
   const names = level.id === 'walmart-ceo' ? GLOBAL_NAMES : CUSTOMER_NAMES;
-  const customer = names[seedIndex % names.length];
+  const customer = seed.conversation?.customer || names[seedIndex % names.length];
   const texts = {
-    deny: `${DENIAL_PREFIX[level.id][stageIndex]}${seed.denial}`,
+    deny: addressedToCustomer(`${DENIAL_PREFIX[level.id][stageIndex]}${seed.denial}`),
     deflect: DEFLECTIONS[level.id][stageIndex](seed),
     risk: STUNT_FRAMES[stageIndex](seed.stunt),
     help: HELP_FRAMES[stageIndex](seed.remedy),
   };
+  // Express conversations use individually written replies. Other developments
+  // retain their own case-specific replies and distinct evidence.
+  if (stageIndex === 0 && seed.conversation?.choices) {
+    Object.assign(texts, seed.conversation.choices);
+  }
   const points = { deny: 90 + (seedIndex % 4) * 10, deflect: 70 + (seedIndex % 3) * 10, risk: 155 + (seedIndex % 6) * 5, help: -70 };
   const heat = { deny: -3, deflect: -5, risk: -10, help: 28 };
   const outcomes = {
@@ -1728,6 +1791,12 @@ function makeCase(seed, seedIndex, stageIndex, level) {
     initials: customer.split(' ').map(part => part[0]).join(''),
     subject: seed.title,
     body: `${seed.premise} ${development}`,
+    customerMessage: stageIndex === 0 && seed.conversation?.customerMessage
+      ? seed.conversation.customerMessage : customerVoice(`${seed.premise} ${development}`),
+    orderId: seed.conversation?.orderId || `OD-${level.id.toUpperCase()}-${String(seedIndex + 1).padStart(3, '0')}`,
+    priorEscalations: (seed.conversation?.priorEscalations || 0) + stageIndex * 2,
+    internalMemo: seed.conversation?.internalMemo || INTERNAL_MEMOS[stageIndex],
+    isCurated: stageIndex === 0 && Boolean(seed.conversation),
     evidence,
     product: seed.product,
     amount: seed.amount,
@@ -1735,7 +1804,7 @@ function makeCase(seed, seedIndex, stageIndex, level) {
     tag: stage.name,
     choices: orderedKinds.map(kind => ({
       id: `${id}-${kind}`,
-      label: kind === 'risk' ? SCENARIO_ACTIONS[level.id][seedIndex] : CHOICE_LABELS[kind][stageIndex],
+      label: kind === 'risk' ? (seed.actionLabel || SCENARIO_ACTIONS[level.id][seedIndex]) : CHOICE_LABELS[kind][stageIndex],
       text: texts[kind],
       kind,
       basePoints: points[kind],
