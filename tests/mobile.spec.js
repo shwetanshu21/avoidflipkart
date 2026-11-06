@@ -33,7 +33,7 @@ async function touchTarget(locator) {
 
 async function screenshot(page, info, name) {
   const path = info.outputPath(`${name}.png`);
-  await page.screenshot({ path });
+  await page.screenshot({ path, scale: 'css' });
   await info.attach(name, { path, contentType: 'image/png' });
 }
 
@@ -152,9 +152,15 @@ test('game controls, history, achievements, pause and separate career saves stay
   await activate(page.locator('#pause-button'));
   await expect(page.locator('.pause-overlay')).toBeVisible();
   await expect(page.locator('.pause-overlay [data-action="pause"]')).toBeInViewport({ ratio: 1 });
+  await screenshot(page, info, 'pause-panel');
   await activate(page.locator('.pause-overlay [data-action="pause"]'));
   await expect(page.locator('.pause-overlay')).toHaveCount(0);
   await expect(page.locator('#case-title')).toBeFocused();
+
+  await page.locator('.choices .choice').last().scrollIntoViewIfNeeded();
+  await activate(page.locator('#pause-button'));
+  await expect(page.locator('.pause-overlay [data-action="pause"]')).toBeInViewport({ ratio: 1 });
+  await activate(page.locator('.pause-overlay [data-action="pause"]'));
 
   const initial = createState(seed, 'express');
   const choice = getCurrentCase(initial).choices.find(item => item.kind === 'risk');
@@ -165,6 +171,14 @@ test('game controls, history, achievements, pause and separate career saves stay
   await expect(page.locator('.ledger-list li')).toHaveCount(1);
   await activate(page.getByRole('button', { name: 'Close dialog', exact: true }));
   const saved = await page.evaluate(() => JSON.parse(JSON.parse(localStorage.getItem('closed-career-v2:express')).game));
+  if (info.project.use.hasTouch) {
+    const portrait = page.viewportSize();
+    await page.setViewportSize({ width: portrait.height, height: portrait.width });
+    await noHorizontalOverflow(page);
+    await expect(page.locator('.sent-message')).toHaveText(choice.text);
+    await page.setViewportSize(portrait);
+    await noHorizontalOverflow(page);
+  }
 
   await page.reload();
   await activate(page.getByRole('button', { name: 'Resume Express', exact: false }));
@@ -240,6 +254,12 @@ test('HR questions scroll into view and firing remains playable on a short scree
     await expect(page.locator('#hr-question')).toHaveText(question.prompt);
     if (index > 0) {
       await expect(page.locator('#hr-question')).toBeInViewport({ ratio: 1 });
+      await expect.poll(() => page.evaluate(() => {
+        const question = document.querySelector('#hr-question').getBoundingClientRect();
+        const bar = document.querySelector('.topbar');
+        const sticky = ['sticky', 'fixed'].includes(getComputedStyle(bar).position);
+        return question.top >= (sticky ? bar.getBoundingClientRect().bottom : 0) - 1;
+      })).toBe(true);
     }
     // One empathetic answer guarantees the firing branch. Using the bottom answer
     // thereafter exercises the next-question scroll from a genuinely lower tap.
