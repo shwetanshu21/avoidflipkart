@@ -21,6 +21,22 @@
       ]
     },
     {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept",
+          "value": ".*[Tt]ext/[Mm]arkdown.*"
+        }
+      ],
+      "headers": [
+        {
+          "key": "x-markdown-tokens",
+          "value": "7360"
+        }
+      ]
+    },
+    {
       "source": "/.well-known/api-catalog",
       "headers": [
         {
