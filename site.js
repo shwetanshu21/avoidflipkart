@@ -4,9 +4,12 @@
   const canonical = 'https://avoidflipkart.com/';
   const reducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const progress = document.getElementById('progress-bar');
+  const chapterNav = document.querySelector('.chapter-nav');
   const chapterLinks = [...document.querySelectorAll('.chapter-nav a')];
   const chapters = [...document.querySelectorAll('[data-chapter]')];
   let scheduled = false;
+  let activeChapterLink;
+  let chapterNavWidth;
 
   function updateReadingPosition() {
     const height = document.documentElement.scrollHeight - window.innerHeight;
@@ -15,10 +18,25 @@
     for (const chapter of chapters) {
       if (chapter.getBoundingClientRect().top <= 170) current = chapter;
     }
+    let currentLink;
     for (const link of chapterLinks) {
-      if (current && link.hash === `#${current.id}`) link.setAttribute('aria-current', 'location');
-      else link.removeAttribute('aria-current');
+      if (current && link.hash === `#${current.id}`) {
+        link.setAttribute('aria-current', 'location');
+        currentLink = link;
+      } else link.removeAttribute('aria-current');
     }
+    const navWidth = chapterNav?.clientWidth;
+    if (chapterNav && currentLink && (currentLink !== activeChapterLink || navWidth !== chapterNavWidth)) {
+      const navBounds = chapterNav.getBoundingClientRect();
+      const linkBounds = currentLink.getBoundingClientRect();
+      const offset = linkBounds.left < navBounds.left ? linkBounds.left - navBounds.left
+        : linkBounds.right > navBounds.right ? linkBounds.right - navBounds.right : 0;
+      // Move only the chapter strip, only when its current link is clipped.
+      // Ordinary page scrolling must not undo a reader's manual swipe of the strip.
+      if (offset) chapterNav.scrollTo({ left: chapterNav.scrollLeft + offset, behavior: reducedMotion() ? 'instant' : 'smooth' });
+    }
+    activeChapterLink = currentLink;
+    chapterNavWidth = navWidth;
     scheduled = false;
   }
   function queueReadingPosition() {

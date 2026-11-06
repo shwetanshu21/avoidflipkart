@@ -6,7 +6,11 @@ on:
       - main
 
 jobs:
+  browser-checks:
+    uses: ./.github/workflows/mobile.yml
+
   deploy:
+    needs: browser-checks
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code

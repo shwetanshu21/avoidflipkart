@@ -281,6 +281,7 @@ function hrAnswer(choiceId) {
   save(); renderGame({ focus: true });
   if (state.phase === 'gameover') $('#terminal-title')?.scrollIntoView({ behavior: motion(), block: 'center' });
   else if (state.phase === 'result') $('#result-panel')?.scrollIntoView({ behavior: motion(), block: 'nearest' });
+  else if (state.phase === 'review') $('#hr-question')?.scrollIntoView({ behavior: motion(), block: 'start' });
 }
 function advance() {
   freezeClock();
@@ -462,7 +463,9 @@ function confetti() {
 }
 function togglePause() {
   if (view !== 'play' || dialog.open || ['gameover', 'complete'].includes(state.phase)) return;
-  freezeClock(); paused = !paused; renderGame(); save();
+  freezeClock(); paused = !paused; renderGame({ focus: !paused });
+  if (paused) $('.pause-overlay [data-action="pause"]')?.focus({ preventScroll: true });
+  save();
 }
 function toggleSound() {
   sound = !sound; setSound(sound); updateHeader(); playSound('click'); savePreferences();
