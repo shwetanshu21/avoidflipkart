@@ -99,8 +99,9 @@ export default function handler(request, response) {
 
   const { id, method, params } = message;
   if (method === "initialize") {
+    const requested = params?.protocolVersion;
     response.status(200).json(rpc(id, {
-      protocolVersion: params?.protocolVersion || "2025-06-18",
+      protocolVersion: SUPPORTED_VERSIONS.has(requested) ? requested : "2025-06-18",
       capabilities: { tools: { listChanged: false } },
       serverInfo: { name: "avoidflipkart", version: "1.0.0" }
     }));
