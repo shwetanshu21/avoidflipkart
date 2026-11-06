@@ -177,6 +177,9 @@ tbody td { padding:clamp(12px,1.2vw,18px) clamp(12px,1.6vw,24px); color:var(--am
 .sim-terminal-meta { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
 .sim-sound-btn { display:inline-flex; align-items:center; gap:6px; padding:4px 10px; border-radius:6px; border:1px solid #1a4f7c; background:#0a2948; color:#d2e7f7; font-size:11px; font-weight:700; font-family:Chakra,sans-serif; cursor:pointer; transition:all .15s; }
 .sim-sound-btn:hover { border-color:var(--amber); color:var(--amber); }
+.sim-terminal-queue { font-size:12px; font-weight:600; color:#9ec5e4; font-family:"Chakra Petch",Chakra,monospace; letter-spacing:.04em; white-space:nowrap; }
+.sim-terminal-queue strong { color:#ffc62c; font-weight:700; }
+.sim-terminal-inc { display:inline-block; padding:3px 9px; border-radius:5px; background:#0c2a47; border:1px solid #1a5282; color:#ffc62c; font-size:12px; font-weight:700; font-family:"Chakra Petch",Chakra,monospace; letter-spacing:.05em; white-space:nowrap; }
 
 /* Chat Window */
 .sim-chat-window { height:460px; overflow-y:auto; padding:22px 20px; display:flex; flex-direction:column; gap:18px; scroll-behavior:smooth; background:#051424; position:relative; }
