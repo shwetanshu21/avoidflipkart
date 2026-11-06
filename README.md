@@ -68,11 +68,15 @@ From a checkout of this repository, run `python -m http.server 4173` and open `h
 
 Alternatively, with Node.js 22 or newer, use `npm run dev` and open the printed URL. The development server accepts `--host` and `--port` arguments, e.g. `npm run dev -- --port 4173`. Visit `/game/` for the game. The local static servers do not emulate Vercel's serverless API or content-negotiation proxy.
 
-For responsive layout checks, open `/docs/layout-preview.html` on the local server. Its same-origin frame offers 360, 390, 768 and 1280 pixel widths. This developer page is marked `noindex` and is not linked from the public navigation.
+For responsive layout checks, open `/docs/layout-preview.html` on the local server. Its same-origin frame can show the casebook or game at phone, tablet, landscape and desktop sizes. This developer page is marked `noindex` and is not linked from the public navigation.
 
 ### Verify
 
 Run `npm test` with Node.js 22 or newer. No dependency installation is needed for the game or its tests. The built-in Node test runner checks the complete case library, Express curation, reply prose without scoring hints, scoring, combos, management heat, promotions, no-repeat dealing, shift reviews, achievements, final victory, three-question HR reviews, termination, separate career modes and version 1 save migration. The existing Vercel deployment workflow runs these tests before building and deploying a push to `main`.
+
+For the browser regression suite, run `npm ci`, `npx playwright install --with-deps chromium webkit`, then `npm run test:mobile`. It starts the HTTP development server automatically. The suite uses Chromium and WebKit with touch-enabled phone and tablet viewports, short landscape screens, and a desktop comparison. It checks document overflow, menus, order filters, native disclosures, denied-clipboard sharing, game controls and dialogs, saved progress, all fourteen Express cases, and the complete HR firing path. The core account is also checked with JavaScript disabled. Browser emulation does not replace a final check on physical iOS and Android devices.
+
+The **Mobile and browser checks** workflow runs this suite for pull requests and is required by the deployment workflow on pushes to `main`. Its artifact contains the HTML report, screenshots and traces for failures. It needs no deployment credentials, so it can validate a change even when hosting is unavailable. Phone UI fixes do not alter game cases, scoring, progression or the save format.
 
 ### Game source
 

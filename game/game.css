@@ -19,3 +19,53 @@ main{max-width:1380px;margin:auto;padding:0 clamp(20px,4vw,64px)}.eyebrow,.tiny-
 .hero-actions{display:flex;align-items:center;flex-wrap:wrap;gap:18px;margin-top:24px}.hero-actions .primary-button{padding:13px 20px}.hero-actions a{font-size:10px;color:#95b6ce;text-decoration:underline;text-underline-offset:4px}.hero-actions a:hover{color:var(--amber)}@media(max-width:800px){.hero-actions{gap:11px;margin-top:18px}.hero-actions .primary-button{padding:11px 15px;font-size:11px}.hero-actions a{font-size:8px}}@media(max-width:600px){.hero-actions{gap:17px}.hero-actions .primary-button{padding:12px 16px;font-size:12px}.hero-actions a{font-size:9px}}
 
 .choice{font-size:13px}.message-bubble{font-size:14px}@media(max-width:1100px){.choice{font-size:12px}.message-bubble{font-size:13px}}@media(max-width:800px){.choice{font-size:12px}}@media(max-width:600px){.choice{font-size:12px}.message-bubble{font-size:13px}.hr-choices .choice{font-size:12px}}@media(max-width:350px){.choice,.hr-choices .choice{font-size:11px}.message-bubble{font-size:12px}}
+
+/* Terminal reports have no sidebar at any viewport width. */
+.work-window.terminal-window { grid-template-columns: minmax(0, 1fr); }
+
+/* Keep the career record reachable when the workstation stacks on phones. */
+@media (max-width: 600px) {
+  .topbar {
+    height: auto;
+    min-height: 65px;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-block: 8px;
+  }
+  .mail-folders {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-column: 1 / -1;
+    grid-row: 2;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+  }
+  .mail-folders .folder {
+    min-width: 0;
+    min-height: 44px;
+    margin: 0;
+    padding: 10px 8px;
+    font-size: 11px;
+    background: #c9deed;
+  }
+  .mail-folders .folder.active { display: none; }
+}
+
+/* Touch controls remain usable in both portrait and landscape. */
+@media (max-width: 600px), (pointer: coarse) {
+  .topbar .nav-button,
+  .topbar .icon-button,
+  .dialog-header .icon-button {
+    min-width: 44px;
+    min-height: 44px;
+  }
+  .evidence summary { min-height: 44px; touch-action: manipulation; }
+  .dialog-header { position: sticky; top: 0; z-index: 1; }
+}
+
+@media (max-width: 319px) {
+  html { scroll-padding-top: 110px; }
+  .topbar { justify-content: center; }
+  .topbar nav { margin-inline: auto; }
+}

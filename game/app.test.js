@@ -14,10 +14,11 @@ const controller = readFileSync(appModuleUrl, 'utf8')
   .replace(/^import .+;\n/gm, '')
   .replace(/\bimport\.meta\.url\b/g, JSON.stringify(appModuleUrl.href));
 
-function mount(storage = {}) {
+function mount(storage = {}, { width = 1200, reducedMotion = true } = {}) {
   const entries = new Map(Object.entries(storage));
   const elements = new Map();
   const tasks = [];
+  const interactions = [];
   let now = 0;
 
   function element() {
@@ -25,7 +26,9 @@ function mount(storage = {}) {
     return {
       innerHTML: '', textContent: '', open: false, dataset: {},
       classList: { add() {}, remove() {}, toggle() {} },
-      setAttribute() {}, focus() {}, scrollIntoView() {}, select() {},
+      setAttribute() {}, select() {},
+      focus(options) { interactions.push({ type: 'focus', element: this, ...options }); },
+      scrollIntoView(options) { interactions.push({ type: 'scroll', element: this, ...options }); },
       append() {}, remove() {}, click() {},
       addEventListener(type, callback) {
         listeners.set(type, [...(listeners.get(type) || []), callback]);
@@ -53,14 +56,14 @@ function mount(storage = {}) {
   };
   const context = vm.createContext({
     ...engine, ...content, document, URL, URLSearchParams,
-    window: { innerWidth: 1200, scrollTo() {}, addEventListener() {} },
+    window: { innerWidth: width, scrollTo() {}, addEventListener() {} },
     location: { search: '' },
     localStorage: {
       getItem: key => entries.get(key) ?? null,
       setItem: (key, value) => entries.set(key, value),
     },
     performance: { now: () => now },
-    matchMedia: () => ({ matches: true }),
+    matchMedia: () => ({ matches: reducedMotion }),
     navigator: { clipboard: { writeText: async () => {} } },
     setTimeout: () => 1, clearTimeout() {}, setInterval() {},
     renderOffice: () => '', renderCrew: () => '', renderHR: () => '', renderAvatar: () => '',
@@ -91,6 +94,11 @@ function mount(storage = {}) {
     entries, dialog, read, flush,
     state: () => read('state'),
     action: (action, settle = true) => dispatch({ action }, settle),
+    answerHR: id => dispatch({ hrChoice: id }),
+    clearInteractions() { interactions.length = 0; },
+    interactions: () => interactions.map(({ element, ...interaction }) => ({
+      ...interaction, selector: [...elements].find(([, value]) => value === element)?.[0],
+    })),
     choose(kind = 'risk') {
       const choice = engine.getCurrentCase(read('state')).choices.find(item => item.kind === kind);
       dispatch({ choice: choice.id });
@@ -123,6 +131,17 @@ function resultAfter(count, mode = 'full') {
     if (index < count - 1) state = engine.advanceCase(state);
   }
   return state;
+}
+
+function reviewState() {
+  let state = engine.createState(123, 'full');
+  for (let count = 0; count < 10; count++) {
+    const choice = engine.getCurrentCase(state).choices.find(item => item.kind === 'help');
+    state = engine.resolveChoice(state, choice.id, 5_000);
+    if (state.pendingReview) return engine.advanceCase(state);
+    state = engine.advanceCase(state);
+  }
+  assert.fail('The helpful run must reach an HR review');
 }
 
 function atResult(result) {
@@ -275,4 +294,48 @@ test('regular dialogs pause active case time and their delayed close events resu
   assert.equal(app.state(), original);
   app.choose('risk');
   assert.equal(app.state().pendingResult.elapsedMs, 6000);
+});
+
+test('each new HR prompt is brought into view without changing answers or reduced-motion preferences', () => {
+  for (const options of [{ width: 390, reducedMotion: false }, { width: 844, reducedMotion: true }]) {
+    const app = mount({ 'closed-career-v2:full': envelope(reviewState()) }, options);
+    app.action('start-full');
+    for (let index = 0; index < 2; index++) {
+      app.clearInteractions();
+      const answer = engine.getHRQuestion(app.state()).choices[0].id;
+      const expected = engine.answerHRQuestion(app.state(), answer);
+      app.answerHR(answer);
+      assert.deepEqual(app.state(), expected);
+      assert.equal(app.state().phase, 'review');
+      assert.equal(app.state().review.index, index + 1);
+      assert.deepEqual(app.interactions(), [
+        { type: 'focus', preventScroll: true, selector: '#hr-question' },
+        { type: 'scroll', behavior: options.reducedMotion ? 'auto' : 'smooth', block: 'start', selector: '#hr-question' },
+      ]);
+    }
+  }
+});
+
+test('pause and resume retain a usable focus target without scrolling or changing the current case, result, or HR review', () => {
+  for (const [state, target] of [
+    [engine.createState(123, 'full'), '#case-title'],
+    [resultAfter(1), '#result-panel'],
+    [reviewState(), '#hr-question'],
+  ]) {
+    const app = mount({ 'closed-career-v2:full': envelope(state, 5_500) }, { width: 390 });
+    app.action('start-full');
+    app.clearInteractions();
+    const elapsed = app.read('currentElapsed()');
+    app.action('pause');
+    app.tick(60_000);
+    app.action('pause');
+    assert.deepEqual(app.state(), state);
+    assert.deepEqual(app.saved('full'), state);
+    assert.equal(app.read('paused'), false);
+    assert.equal(app.read('currentElapsed()'), elapsed, 'Time spent paused must remain excluded');
+    assert.deepEqual(app.interactions(), [
+      { type: 'focus', preventScroll: true, selector: '.pause-overlay [data-action="pause"]' },
+      { type: 'focus', preventScroll: true, selector: target },
+    ]);
+  }
 });
