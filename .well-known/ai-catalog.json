@@ -2,7 +2,7 @@
   "specVersion": "1.0",
   "host": {
     "displayName": "Avoid Flipkart",
-    "identifier": "did:web:avoidflipkart.com"
+    "identifier": "https://avoidflipkart.com/"
   },
   "entries": [
     {
