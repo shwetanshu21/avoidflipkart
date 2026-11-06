@@ -6,3 +6,7 @@ site/
 assets/fonts/*.ttf
 assets/fonts/*latin*
 WATCHDOG.yml
+.vercel
+
+.vercel
+.env*
