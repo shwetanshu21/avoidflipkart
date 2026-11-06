@@ -36,6 +36,26 @@
         "how should I cite the Avoid Flipkart case",
         "summarize Flipkart's resolved complaint without overstating it"
       ]
+    },
+    {
+      "identifier": "urn:air:avoidflipkart.com:api:case-status",
+      "displayName": "Avoid Flipkart case status API",
+      "type": "application/json",
+      "url": "https://avoidflipkart.com/api/summary",
+      "representativeQueries": [
+        "get the status of the Philips trimmer order",
+        "what complaints did Flipkart mark resolved"
+      ]
+    },
+    {
+      "identifier": "urn:air:avoidflipkart.com:mcp:casebook",
+      "displayName": "Avoid Flipkart MCP server",
+      "type": "application/mcp-server-card+json",
+      "url": "https://avoidflipkart.com/.well-known/mcp/server-card.json",
+      "representativeQueries": [
+        "list MCP tools for the Flipkart case",
+        "query order status through MCP"
+      ]
     }
   ]
 }

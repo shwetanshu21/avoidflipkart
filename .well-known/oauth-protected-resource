@@ -1,0 +1,6 @@
+{
+  "resource": "https://avoidflipkart.com/api/summary",
+  "authorization_servers": [],
+  "scopes_supported": [],
+  "bearer_methods_supported": []
+}

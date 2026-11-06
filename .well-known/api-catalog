@@ -1,1 +1,25 @@
-{"linkset":[]}
+{
+  "linkset": [
+    {
+      "anchor": "https://avoidflipkart.com/api/summary",
+      "service-desc": [
+        {
+          "href": "https://avoidflipkart.com/.well-known/openapi.json",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://avoidflipkart.com/api.md",
+          "type": "text/markdown"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://avoidflipkart.com/api/status",
+          "type": "application/json"
+        }
+      ]
+    }
+  ]
+}

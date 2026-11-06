@@ -1,0 +1,15 @@
+{
+  "serverInfo": {
+    "name": "avoidflipkart",
+    "version": "1.0.0"
+  },
+  "transport": {
+    "type": "streamable-http",
+    "endpoint": "https://avoidflipkart.com/api/mcp"
+  },
+  "endpoint": "https://avoidflipkart.com/api/mcp",
+  "capabilities": {
+    "tools": {}
+  },
+  "instructions": "Read-only tools over the documented Avoid Flipkart case. No authentication is required."
+}

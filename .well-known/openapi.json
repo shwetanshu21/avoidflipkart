@@ -1,0 +1,86 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Avoid Flipkart case API",
+    "version": "1.0.0",
+    "summary": "Read-only access to the documented order and complaint status in the Avoid Flipkart case.",
+    "license": { "name": "All rights reserved" }
+  },
+  "servers": [{ "url": "https://avoidflipkart.com" }],
+  "paths": {
+    "/api/summary": {
+      "get": {
+        "operationId": "getCaseSummary",
+        "summary": "Order and complaint status as reviewed on 6 November 2026.",
+        "responses": {
+          "200": {
+            "description": "Case status",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Case" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/status": {
+      "get": {
+        "operationId": "getStatus",
+        "summary": "Service health.",
+        "responses": {
+          "200": {
+            "description": "Healthy",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string" },
+                    "service": { "type": "string" },
+                    "checkedAt": { "type": "string", "format": "date-time" }
+                  },
+                  "required": ["status"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/mcp": {
+      "post": {
+        "operationId": "mcp",
+        "summary": "MCP Streamable HTTP endpoint exposing read-only case tools.",
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "type": "object" } } }
+        },
+        "responses": {
+          "200": {
+            "description": "JSON-RPC response",
+            "content": { "application/json": { "schema": { "type": "object" } } }
+          },
+          "202": { "description": "Notification accepted" }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Case": {
+        "type": "object",
+        "properties": {
+          "site": { "type": "string" },
+          "asOf": { "type": "string", "format": "date" },
+          "source": { "type": "string", "format": "uri" },
+          "orders": { "type": "array", "items": { "type": "object" } },
+          "complaints": { "type": "object" },
+          "grievance": { "type": "object" },
+          "note": { "type": "string" }
+        },
+        "required": ["site", "asOf", "orders", "source"]
+      }
+    }
+  }
+}
