@@ -129,36 +129,90 @@
           <h2 id="simulator-heading">The support simulator.</h2>
           <p class="sim-subheading">Experience Flipkart VIP priority support in real time: unprovoked rescheduling, meteorological panic, the strawberry Turing test, and the infinite grievance incident generator. Written in the unyielding tradition of David Thorne.</p>
         </div>
-        <div class="sim-metrics" aria-live="polite">
-          <div class="sim-metric-card">
-            <span class="sim-metric-label">Active Incidents Minted</span>
-            <span class="sim-metric-value" id="sim-metric-incidents">1</span>
+      </div>
+
+      <!-- Telemetry HUD Dashboard -->
+      <div class="sim-hud" aria-live="polite">
+        <div class="sim-hud-card">
+          <span class="sim-hud-label">Active Incident Dossier <span class="sim-hud-badge" id="sim-hud-incident-tag">OPEN</span></span>
+          <span class="sim-hud-value" id="sim-metric-incidents-dossier">INC-849201</span>
+          <p class="sim-hud-sub">Minted: 1 | Closed Without Delivery: 1</p>
+        </div>
+        <div class="sim-hud-card hazard">
+          <span class="sim-hud-label">Delivery Probability <span>⚠️ CRITICAL</span></span>
+          <span class="sim-hud-value">0.00%</span>
+          <p class="sim-hud-sub">Defying Newtonian mechanics since September</p>
+        </div>
+        <div class="sim-hud-card quantum">
+          <span class="sim-hud-label">Parcel Quantum State <span>🌀 FLUID</span></span>
+          <span class="sim-hud-value" id="sim-hud-state">SUPERPOSITION</span>
+          <p class="sim-hud-sub" id="sim-hud-state-sub">Prabhat Road Hub ↔ Cosmic Void</p>
+        </div>
+        <div class="sim-hud-card hazard">
+          <span class="sim-hud-label">Astral Blame Allocation <span>🛌 REM</span></span>
+          <span class="sim-hud-value">100% USER</span>
+          <p class="sim-hud-sub">Attributed to customer 02:41 AM sleep sighs</p>
+        </div>
+      </div>
+
+      <!-- Quantum Delivery Pipeline Minimap -->
+      <div class="sim-pipeline-wrap" aria-label="Quantum Delivery Corridor">
+        <div class="sim-pipeline-header">
+          <span>Quantum Delivery Pipeline Telemetry</span>
+          <span id="sim-pipeline-status-text">CURRENT STAGE: THEORETICAL SUPERPOSITION</span>
+        </div>
+        <div class="sim-pipeline-track">
+          <div class="sim-pipeline-node done" id="pipe-node-0">
+            <div class="sim-pipeline-dot">💳</div>
+            <span class="sim-pipeline-label">Payment Taken</span>
+            <span class="sim-pipeline-status">Instantaneous</span>
           </div>
-          <div class="sim-metric-card">
-            <span class="sim-metric-label">Customer Blame Assigned</span>
-            <span class="sim-metric-value">100%</span>
+          <div class="sim-pipeline-node done" id="pipe-node-1">
+            <div class="sim-pipeline-dot">🛌</div>
+            <span class="sim-pipeline-label">Astral Delay</span>
+            <span class="sim-pipeline-status">02:41 AM Waiver</span>
           </div>
-          <div class="sim-metric-card">
-            <span class="sim-metric-label">Physical Delivery Progress</span>
-            <span class="sim-metric-value">0.0%</span>
+          <div class="sim-pipeline-node active" id="pipe-node-2">
+            <div class="sim-pipeline-dot">⚠️</div>
+            <span class="sim-pipeline-label">Guideline Check</span>
+            <span class="sim-pipeline-status">Failed to Exist</span>
+          </div>
+          <div class="sim-pipeline-node" id="pipe-node-3">
+            <div class="sim-pipeline-dot">☕</div>
+            <span class="sim-pipeline-label">Concerned Team</span>
+            <span class="sim-pipeline-status">Mandatory Tea</span>
+          </div>
+          <div class="sim-pipeline-node loop" id="pipe-node-4">
+            <div class="sim-pipeline-dot">🌌</div>
+            <span class="sim-pipeline-label">Theoretical Void</span>
+            <span class="sim-pipeline-status">Permanent</span>
           </div>
         </div>
       </div>
 
       <div class="sim-layout">
-        <div class="sim-terminal" role="region" aria-label="Flipkart VIP Support Console">
+        <!-- Main Console -->
+        <div class="sim-terminal" id="sim-terminal" role="region" aria-label="Flipkart VIP Support Console">
           <div class="sim-terminal-header">
             <div class="sim-terminal-title">
               <span class="sim-live-indicator" aria-hidden="true"></span>
               <div>
-                <strong>FLIPKART BLACK™ VIP CARE · QUANTUM PORTAL</strong>
+                <strong>FLIPKART BLACK™ VIP CARE · QUANTUM ENGINE</strong>
                 <span class="sim-agent-status" id="sim-agent-status">Agent Zaid (100% Biological Flesh Entity)</span>
               </div>
             </div>
             <div class="sim-terminal-meta">
-              <span class="sim-badge sim-badge-vip">NO QUEUE · NO BOT*</span>
+              <button type="button" class="sim-sound-btn" id="sim-sound-btn" onclick="toggleSimSound()" aria-label="Toggle sound effects">
+                <span id="sim-sound-icon">🔊</span> <span id="sim-sound-label">SOUND: ON</span>
+              </button>
+              <span class="sim-badge sim-badge-vip">QUEUE: #6,481</span>
               <span class="sim-badge sim-badge-incident" id="sim-active-badge">INC-849201</span>
             </div>
+          </div>
+
+          <!-- Rubber Stamp Animation Overlay -->
+          <div class="sim-stamp-overlay" id="sim-stamp-overlay" style="display:none;" aria-hidden="true">
+            <div class="sim-stamp" id="sim-stamp-text">RESOLVED: ZERO PRIOR CONTACT FOUND</div>
           </div>
 
           <div class="sim-chat-window" id="sim-chat-window" role="log" aria-live="polite"></div>
@@ -168,18 +222,56 @@
             <span class="sim-typing-text" id="sim-typing-text">Agent Zaid is formulating an excuse...</span>
           </div>
 
-          <div class="sim-pills" role="toolbar" aria-label="Quick response options">
-            <button type="button" class="sim-pill" onclick="handleSimPill('weather')">🌪️ Blame the weather</button>
-            <button type="button" class="sim-pill" onclick="handleSimPill('reschedule')">🛌 I didn't reschedule!</button>
-            <button type="button" class="sim-pill" onclick="handleSimPill('black')">👑 FK Black benefits?</button>
-            <button type="button" class="sim-pill" onclick="handleSimPill('human')">👤 Talk to real human</button>
-            <button type="button" class="sim-pill sim-pill-escalate" onclick="handleSimPill('grievance')">⚖️ Escalate to Grievance Officer</button>
-            <button type="button" class="sim-pill" onclick="handleSimPill('where')">📦 Where is my parcel?</button>
-            <button type="button" class="sim-pill" onclick="handleSimPill('cancel')">✂️ Cancel my order</button>
+          <!-- Interactive Action Deck (Tactile Game Controls) -->
+          <div class="sim-action-deck-wrap">
+            <div class="sim-deck-title">
+              <span>Choose Bureaucratic Action</span>
+              <span style="color:#ffc62c;">VIP TIER UNLOCKED</span>
+            </div>
+
+            <!-- Boss Button: Escalate to Grievance Officer -->
+            <button type="button" class="sim-action-boss" onclick="handleSimPill('grievance')" aria-label="Escalate to Grievance Officer">
+              <div class="sim-boss-title">
+                <span style="font-size:22px;" aria-hidden="true">⚖️</span>
+                <div>
+                  <strong>DEPLOY GRIEVANCE OFFICER MR KARTHIK R.</strong>
+                  <div class="sim-boss-desc">Stamp current ticket resolved, declare zero prior contact, and mint a brand new incident.</div>
+                </div>
+              </div>
+              <span class="sim-boss-badge">INFINITE INCIDENT LOOP</span>
+            </button>
+
+            <!-- Action Grid -->
+            <div class="sim-action-grid" role="toolbar" aria-label="Quick response options">
+              <button type="button" class="sim-action-card" onclick="handleSimPill('weather')">
+                <span class="sim-action-head">🌪️ Blame the Weather</span>
+                <span class="sim-action-desc">Deploy 4m Pune cloud & 47% cardboard humidity</span>
+              </button>
+              <button type="button" class="sim-action-card" onclick="handleSimPill('reschedule')">
+                <span class="sim-action-head">🛌 I Didn't Reschedule!</span>
+                <span class="sim-action-desc">Dispute 02:41 AM astral brainwave sleep waiver</span>
+              </button>
+              <button type="button" class="sim-action-card" onclick="handleSimPill('black')">
+                <span class="sim-action-head">👑 FK Black VIP Privileges</span>
+                <span class="sim-action-desc">Skip line behind 6,481 other priority VIPs</span>
+              </button>
+              <button type="button" class="sim-action-card" onclick="handleSimPill('human')">
+                <span class="sim-action-head">🍓 Strawberry Turing Test</span>
+                <span class="sim-action-desc">Expose 100% biological flesh & bone credentials</span>
+              </button>
+              <button type="button" class="sim-action-card" onclick="handleSimPill('where')">
+                <span class="sim-action-head">📦 Scan Quantum Coordinates</span>
+                <span class="sim-action-desc">Check parcel's emotional readiness to arrive</span>
+              </button>
+              <button type="button" class="sim-action-card" onclick="handleSimPill('cancel')">
+                <span class="sim-action-head">✂️ Attempt Cancellation</span>
+                <span class="sim-action-desc">Trigger 3 automatic replacement orders for 2029</span>
+              </button>
+            </div>
           </div>
 
           <form class="sim-input-form" id="sim-input-form" onsubmit="handleSimSubmit(event)">
-            <input type="text" id="sim-user-input" class="sim-input" placeholder="Type an inquiry or test biological humanity (e.g. 'how many r in strawberry')..." autocomplete="off" aria-label="Message to Flipkart VIP Support">
+            <input type="text" id="sim-user-input" class="sim-input" placeholder="Type custom complaint or test biological humanity (e.g. 'refund', 'court', 'strawberry')..." autocomplete="off" aria-label="Message to Flipkart VIP Support">
             <button type="submit" class="button sim-send-btn" aria-label="Send message">
               <span>Send</span>
               <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7Z"/></svg>
@@ -190,20 +282,59 @@
           </form>
         </div>
 
+        <!-- Sidebar Ledger & Certificate Generator -->
         <aside class="sim-ledger" aria-labelledby="ledger-heading">
           <div class="sim-ledger-header">
-            <h3 id="ledger-heading">Grievance Audit Ledger</h3>
-            <span class="sim-ledger-sub">Live Bureaucratic Event Trail</span>
+            <div>
+              <h3 id="ledger-heading">Grievance Audit Ledger</h3>
+              <span class="sim-ledger-sub">Live Bureaucratic Event Trail</span>
+            </div>
+            <span class="sim-ledger-badge" id="sim-ledger-count">1 TICKET</span>
           </div>
           <div class="sim-ledger-list" id="sim-ledger-list"></div>
           <div class="sim-ledger-footer">
-            <p>* Flipkart BLACK guaranteed priority: You are in an expedited line behind 6,481 other priority members. Delivery status remains theoretical.</p>
+            <button type="button" class="sim-cert-btn" onclick="openCertificate()">
+              <span aria-hidden="true">📜</span> Issue Redaction Certificate
+            </button>
             <button type="button" class="sim-copy-transcript-btn" onclick="copySimTranscript()">
               <svg aria-hidden="true" viewBox="0 0 24 24"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
               Copy Support Transcript
             </button>
+            <p>* Flipkart BLACK guaranteed priority: You are in an expedited line behind 6,481 other priority members. Delivery status remains theoretical.</p>
           </div>
         </aside>
+      </div>
+
+      <!-- Official Certificate of Inaction Modal -->
+      <div class="sim-cert-modal" id="sim-cert-modal" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="cert-title">
+        <div class="sim-cert-box">
+          <div class="sim-cert-seal">⚖️</div>
+          <h3 id="cert-title">THE FLIPKART ACADEMY OF QUANTUM LOGISTICS</h3>
+          <div class="sim-cert-sub">Official Certificate of Administrative Redaction & Cosmic Non-Delivery</div>
+          <p class="sim-cert-body">
+            This document certifies that the <strong>Valued Customer</strong> has demonstrated heroic spiritual detachment from legal tender and material goods.
+            Having filed multiple grievances, <strong>Grievance Officer Karthik R.</strong> officially declares that the customer has never contacted customer support.
+            Current <strong>Incident #<span id="cert-inc-num">INC-849201</span></strong> is hereby stamped permanently <strong>RESOLVED</strong> while the physical merchandise remains entirely theoretical.
+          </p>
+          <div class="sim-cert-signature">
+            <div class="sim-cert-sig-block">
+              <strong>Zaid</strong>
+              <span>Verified Flesh Human</span>
+            </div>
+            <div class="sim-cert-sig-block">
+              <strong>Karthik R.</strong>
+              <span>Chief Grievance Redactor</span>
+            </div>
+            <div class="sim-cert-sig-block">
+              <strong>Tomorrow, Nov 07</strong>
+              <span>Trademarked Deadline</span>
+            </div>
+          </div>
+          <div class="sim-cert-actions">
+            <button type="button" class="button sim-send-btn" onclick="copyCertText()">Copy Certificate Text</button>
+            <button type="button" class="share-btn share-btn-quiet" onclick="closeCertificate()">Close</button>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -280,16 +411,114 @@
     var typingBar = document.getElementById('sim-typing-bar');
     var typingText = document.getElementById('sim-typing-text');
     var userInput = document.getElementById('sim-user-input');
-    var metricIncidents = document.getElementById('sim-metric-incidents');
     var activeBadge = document.getElementById('sim-active-badge');
     var agentStatus = document.getElementById('sim-agent-status');
+    var dossierVal = document.getElementById('sim-metric-incidents-dossier');
+    var ledgerCount = document.getElementById('sim-ledger-count');
+    var hudState = document.getElementById('sim-hud-state');
+    var hudStateSub = document.getElementById('sim-hud-state-sub');
+    var pipelineStatus = document.getElementById('sim-pipeline-status-text');
+    var stampOverlay = document.getElementById('sim-stamp-overlay');
+    var stampText = document.getElementById('sim-stamp-text');
+    var terminal = document.getElementById('sim-terminal');
+    var soundBtn = document.getElementById('sim-sound-btn');
+    var soundIcon = document.getElementById('sim-sound-icon');
+    var soundLabel = document.getElementById('sim-sound-label');
 
     if(!chatWindow || !ledgerList) return;
 
     var activeIncidentNum = 849201;
     var totalIncidents = 1;
     var isTyping = false;
+    var soundOn = true;
     var transcriptHistory = [];
+    var unlockedAchievements = {};
+
+    var AVATARS = {
+      zaid: '<div class="sim-avatar sim-avatar-zaid" title="Agent Zaid (100% Biological Flesh Entity)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a6 6 0 0 1 12 0v2"/><path d="M19 11v2a2 2 0 0 1-2 2h-1M5 11v2a2 2 0 0 0 2 2h1"/></svg></div>',
+      karthik: '<div class="sim-avatar sim-avatar-karthik" title="Grievance Officer Karthik R."><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="m14 13-7.5 7.5a2.12 2.12 0 1 1-3-3L11 10"/><path d="m16 16 6-6M8 8l6-6M9 7l8 8"/></svg></div>',
+      pooja: '<div class="sim-avatar sim-avatar-pooja" title="Pooja (Quantum Repromise)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>',
+      dispatch: '<div class="sim-avatar sim-avatar-dispatch" title="Automated Resolution Dispatch"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8" cy="10" r="1.5"/><circle cx="16" cy="10" r="1.5"/><path d="M9 16h6"/></svg></div>',
+      user: '<div class="sim-avatar sim-avatar-user" title="You (Customer)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="m2 7 10-5 10 5v10l-10 5-10-5Z"/><path d="m2 7 10 5 10-5M12 12v10"/></svg></div>'
+    };
+
+    /* Web Audio API Synthesizer */
+    var audioCtx = null;
+    function getAudioCtx() {
+      if(!audioCtx && (window.AudioContext || window.webkitAudioContext)) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if(audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playClick() {
+      if(!soundOn) return;
+      try {
+        var ctx = getAudioCtx();
+        if(!ctx) return;
+        var osc = ctx.createOscillator();
+        var gain = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(520, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(140, ctx.currentTime + 0.04);
+        gain.gain.setValueAtTime(0.12, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.005, ctx.currentTime + 0.04);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.05);
+      } catch(e){}
+    }
+
+    function playStamp() {
+      if(!soundOn) return;
+      try {
+        var ctx = getAudioCtx();
+        if(!ctx) return;
+        var osc = ctx.createOscillator();
+        var gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(150, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(30, ctx.currentTime + 0.22);
+        gain.gain.setValueAtTime(0.5, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.25);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.26);
+      } catch(e){}
+    }
+
+    function playChime() {
+      if(!soundOn) return;
+      try {
+        var ctx = getAudioCtx();
+        if(!ctx) return;
+        [523.25, 659.25, 783.99].forEach(function(freq, idx){
+          var osc = ctx.createOscillator();
+          var gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, ctx.currentTime + idx*0.07);
+          gain.gain.setValueAtTime(0, ctx.currentTime + idx*0.07);
+          gain.gain.linearRampToValueAtTime(0.14, ctx.currentTime + idx*0.07 + 0.02);
+          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + idx*0.07 + 0.32);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(ctx.currentTime + idx*0.07);
+          osc.stop(ctx.currentTime + idx*0.07 + 0.33);
+        });
+      } catch(e){}
+    }
+
+    window.toggleSimSound = function() {
+      soundOn = !soundOn;
+      if(soundIcon) soundIcon.textContent = soundOn ? '🔊' : '🔇';
+      if(soundLabel) soundLabel.textContent = soundOn ? 'SOUND: ON' : 'SOUND: OFF';
+      if(soundOn) playClick();
+    };
 
     var incidents = [
       {
@@ -316,7 +545,7 @@
       return h + ':' + m + ' ' + ampm;
     }
 
-    function appendMessage(sender, role, contentHtml, type, isGrievance) {
+    function appendMessage(sender, role, contentHtml, type, isGrievance, avatarType) {
       var time = getTimeString();
       var msgEl = document.createElement('div');
       msgEl.className = 'sim-msg ' + (type === 'user' ? 'sim-msg-user' : (type === 'system' ? 'sim-msg-system' : 'sim-msg-agent')) + (isGrievance ? ' sim-msg-grievance' : '');
@@ -324,12 +553,19 @@
       if(type === 'system') {
         msgEl.innerHTML = contentHtml;
       } else if(type === 'user') {
-        msgEl.innerHTML = '<span class="sim-msg-author">You · ' + time + '</span>' +
-                          '<div class="sim-msg-bubble">' + contentHtml + '</div>';
+        msgEl.innerHTML = (AVATARS.user || '') +
+                          '<div class="sim-msg-content">' +
+                            '<span class="sim-msg-author">You · ' + time + '</span>' +
+                            '<div class="sim-msg-bubble">' + contentHtml + '</div>' +
+                          '</div>';
         transcriptHistory.push('[You - ' + time + ']: ' + contentHtml.replace(/<[^>]+>/g, ''));
       } else {
-        msgEl.innerHTML = '<span class="sim-msg-author">' + escapeHtml(sender) + ' (' + escapeHtml(role) + ') · ' + time + '</span>' +
-                          '<div class="sim-msg-bubble">' + contentHtml + '</div>';
+        var av = AVATARS[avatarType || 'zaid'] || AVATARS.zaid;
+        msgEl.innerHTML = av +
+                          '<div class="sim-msg-content">' +
+                            '<span class="sim-msg-author">' + escapeHtml(sender) + ' (' + escapeHtml(role) + ') · ' + time + '</span>' +
+                            '<div class="sim-msg-bubble">' + contentHtml + '</div>' +
+                          '</div>';
         transcriptHistory.push('[' + sender + ' (' + role + ') - ' + time + ']:\n' + contentHtml.replace(/<br\s*\/?>/gi, '\n').replace(/<\/p>/gi, '\n\n').replace(/<[^>]+>/g, '').trim());
       }
 
@@ -339,7 +575,7 @@
 
     function showTyping(status) {
       isTyping = true;
-      if(typingText) typingText.textContent = status || 'Agent is formulating a response...';
+      if(typingText) typingText.textContent = status || 'Agent is formulating an excuse...';
       if(typingBar) typingBar.style.display = 'flex';
       chatWindow.scrollTop = chatWindow.scrollHeight;
     }
@@ -363,6 +599,57 @@
           '<p class="sim-incident-finding"><strong>Grievance Finding:</strong> ' + escapeHtml(inc.finding) + '</p>';
         ledgerList.appendChild(item);
       });
+      if(ledgerCount) ledgerCount.textContent = incidents.length + (incidents.length === 1 ? ' TICKET' : ' TICKETS');
+    }
+
+    function triggerAchievement(id, title, desc) {
+      if(unlockedAchievements[id]) return;
+      unlockedAchievements[id] = true;
+      playChime();
+
+      var toast = document.createElement('div');
+      toast.className = 'sim-achievement-toast';
+      toast.innerHTML = '<div class="sim-achievement-icon">🏆</div>' +
+        '<div>' +
+          '<div class="sim-achievement-title">Achievement Unlocked!</div>' +
+          '<div class="sim-achievement-desc"><strong>' + escapeHtml(title) + '</strong>: ' + escapeHtml(desc) + '</div>' +
+        '</div>';
+      document.body.appendChild(toast);
+
+      setTimeout(function(){
+        toast.style.transition = 'opacity .4s ease, transform .4s ease';
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateX(80px)';
+        setTimeout(function(){ document.body.removeChild(toast); }, 450);
+      }, 3800);
+    }
+
+    function updatePipelineNode(nodeIndex, statusLabel) {
+      for(var i = 0; i <= 4; i++) {
+        var node = document.getElementById('pipe-node-' + i);
+        if(!node) continue;
+        node.className = 'sim-pipeline-node' + (i < nodeIndex ? ' done' : (i === nodeIndex ? ' active' : ''));
+        if(i === 4 && nodeIndex >= 4) node.className = 'sim-pipeline-node loop';
+      }
+      if(pipelineStatus && statusLabel) {
+        pipelineStatus.textContent = 'CURRENT STAGE: ' + statusLabel.toUpperCase();
+      }
+    }
+
+    function triggerRubberStamp(text) {
+      playStamp();
+      if(terminal) {
+        terminal.classList.remove('shake-terminal');
+        void terminal.offsetWidth; // force reflow
+        terminal.classList.add('shake-terminal');
+      }
+      if(stampOverlay && stampText) {
+        stampText.textContent = text;
+        stampOverlay.style.display = 'block';
+        setTimeout(function(){
+          stampOverlay.style.display = 'none';
+        }, 1800);
+      }
     }
 
     function initSimulator() {
@@ -380,9 +667,13 @@
         }
       ];
 
-      if(metricIncidents) metricIncidents.textContent = '1';
+      if(dossierVal) dossierVal.textContent = 'INC-849201';
       if(activeBadge) activeBadge.textContent = 'INC-849201';
       if(agentStatus) agentStatus.textContent = 'Agent Zaid (100% Biological Flesh Entity)';
+      if(hudState) hudState.textContent = 'SUPERPOSITION';
+      if(hudStateSub) hudStateSub.textContent = 'Prabhat Road Hub ↔ Cosmic Void';
+
+      updatePipelineNode(2, 'GUIDELINE EVALUATION');
 
       appendMessage('', '', '⚡ You are now connected to Flipkart BLACK™ VIP Care (Priority Queue #6,481). Estimated wait time: Indefinite.', 'system');
 
@@ -392,7 +683,7 @@
         '<p>I have thoroughly investigated your orders placed between September and November. I am delighted to inform you that your merchandise is in pristine theoretical condition.</p>' +
         '<p>How may I unprovokedly reschedule your afternoon?</p>' +
         '<p>Kind regards,<br><strong>Zaid</strong><br>Senior Empathy Emulation Executive</p>',
-        'agent'
+        'agent', false, 'zaid'
       );
 
       renderLedger();
@@ -402,8 +693,12 @@
       weather: {
         agent: 'Agent Zaid',
         role: 'Senior Atmospheric Logistics Specialist',
+        avatar: 'zaid',
         typingStatus: 'Agent Zaid is consulting Doppler radar and local cloud densities...',
         userText: 'Why is my parcel late? What happened to the delivery?',
+        pipelineStage: 2,
+        pipelineLabel: 'ATMOSPHERIC CELESTIAL HOLD',
+        achievement: { id: 'weather', title: 'Meteorological Calamity', desc: 'Blamed 4m Pune cumulus cloud and 47% cardboard humidity' },
         body: '<p>Dear Customer,</p>' +
               '<p>I have examined our Doppler meteorological telemetry logs for Western India. At approximately 11:34 AM, an ephemeral cumulus cloud measuring four metres across drifted over suburban Pune, causing ambient sunlight levels to dip by 0.04%.</p>' +
               '<p>Under Flipkart Weather Policy 14-B (<em>“Protection of Couriers from Ephemeral Shadows”</em>), our delivery personnel are legally mandated to dismount their two-wheelers and seek shelter under a banyan tree until atmospheric serenity is re-established.</p>' +
@@ -422,8 +717,12 @@
       reschedule: {
         agent: 'Agent Zaid',
         role: 'Verified Biological Human',
+        avatar: 'zaid',
         typingStatus: 'Agent Zaid is accessing subconscious neural sleep telemetry...',
         userText: 'I never asked to reschedule my delivery! Why does tracking claim customer requested?',
+        pipelineStage: 1,
+        pipelineLabel: 'ASTRAL REM WAIVER INVOKED',
+        achievement: { id: 'astral', title: 'Astral Rescheduler', desc: 'Discovered your 02:41 AM sleep sighs legally postponed shipment' },
         body: '<p>Dear Customer,</p>' +
               '<p>Thank you for your correspondence denying that you rescheduled your delivery. While you may have no conscious recollection of submitting this request, our predictive neural telepathy engine recorded a distinct sigh of logistical ambivalence from your IP address at 02:41 AM on Thursday.</p>' +
               '<p>Under Flipkart Clause 8.2 (<em>“Subconscious and Astral Modifications”</em>), any customer who rolls over in bed during REM sleep and subconsciously ponders whether they truly need an ergonomic mouse today has legally entered into a binding rescheduling agreement.</p>' +
@@ -434,8 +733,12 @@
       black: {
         agent: 'The Concerned Team',
         role: 'Department of High-Priority Inaction',
+        avatar: 'dispatch',
         typingStatus: 'The Concerned Team is calculating VIP queue seniority...',
         userText: 'I paid for Flipkart BLACK Priority Membership. Where is the priority support?',
+        pipelineStage: 3,
+        pipelineLabel: 'VIP TEA BREAK SYMPOSIUM',
+        achievement: { id: 'vip', title: 'VIP Darshan', desc: 'Bypassed 40,000 citizens to stand in line behind 6,481 VIPs' },
         body: '<p>Dear Customer,</p>' +
               '<p>Thank you for subscribing to Flipkart BLACK Priority Membership at premium expense. As a valued VIP member, you enjoy our sacred <em>“No Queue, No Bot”</em> guarantee:</p>' +
               '<ol>' +
@@ -450,8 +753,12 @@
       human: {
         agent: 'Agent Zaid',
         role: '100% Biological Flesh Entity',
+        avatar: 'zaid',
         typingStatus: 'Verifying cellular biology and fruit orthography...',
         userText: 'Are you a real human or a bot? How many r\'s in strawberry?',
+        pipelineStage: 2,
+        pipelineLabel: 'BIOLOGICAL FLESH AUDIT',
+        achievement: { id: 'strawberry', title: 'Strawberry Inquisitor', desc: 'Audited corporate bot fruit orthography' },
         body: '<p>Dear Customer,</p>' +
               '<p>I assure you with 100% biological certainty that I am a living, carbon-based humanoid entity residing in an ergonomic chair and consuming organic nutrients.</p>' +
               '<p>Proof of biological humanity:</p>' +
@@ -467,8 +774,12 @@
       where: {
         agent: 'Pooja',
         role: 'Senior Repromise Engineer',
+        avatar: 'pooja',
         typingStatus: 'Pooja is calculating Mumbai-Pune quantum coordinate vectors...',
         userText: 'Where is my order? Tracking says out for delivery for 48 hours!',
+        pipelineStage: 4,
+        pipelineLabel: 'THEORETICAL SUPERPOSITION',
+        achievement: { id: 'superposition', title: 'Quantum Deliveree', desc: 'Kept parcel in dual physical and theoretical existence' },
         body: '<p>Dear Customer,</p>' +
               '<p>I have located your shipment in our quantum logistics ledger. It is currently in a state of logistical superposition on the Mumbai-Pune Expressway. It is simultaneously inside the courier’s delivery sack, resting at the Prabhat Road distribution hub, and existing as a fond memory in our server cache.</p>' +
               '<p>It has been marked <em>“Out for Delivery”</em> for forty-eight consecutive hours. In Flipkart terminology, <em>“Out for Delivery”</em> does not indicate geographic motion toward your domicile; it merely indicates that the parcel is emotionally receptive to arriving should the universe allow it.</p>' +
@@ -478,8 +789,12 @@
       cancel: {
         agent: 'Automated Dispatch',
         role: 'Resolution Matrix',
+        avatar: 'dispatch',
         typingStatus: 'Automated dispatch is minting three replacement orders...',
         userText: 'I give up. Please cancel my order and issue a refund immediately.',
+        pipelineStage: 4,
+        pipelineLabel: 'TRIPLE REPLACEMENT DISPATCHED',
+        achievement: { id: 'cancellation', title: 'Futile Cancellation', desc: 'Attempted to cancel and received 3 orders for 2029 instead' },
         body: '<p>Dear Customer,</p>' +
               '<p>We have received your petition to cancel your order. Unfortunately, cancellation cannot be processed at this time because your parcel has already failed the <em>“Product Delivery Guidelines”</em> for physical manifestation.</p>' +
               '<p>To compensate you for this inconvenience, our automated resolution matrix has:</p>' +
@@ -499,17 +814,27 @@
       var item = THORNE_RESPONSES[key];
       if(!item) return;
 
+      playClick();
       appendMessage('You', 'Customer', escapeHtml(customUserText || item.userText), 'user');
       showTyping(item.typingStatus);
 
+      if(item.pipelineStage !== undefined) {
+        updatePipelineNode(item.pipelineStage, item.pipelineLabel);
+      }
+
       setTimeout(function(){
         hideTyping();
-        appendMessage(item.agent, item.role, item.body, 'agent');
+        appendMessage(item.agent, item.role, item.body, 'agent', false, item.avatar);
+        if(item.achievement) {
+          triggerAchievement(item.achievement.id, item.achievement.title, item.achievement.desc);
+        }
       }, 700);
     }
 
     function triggerGrievanceEscalation(customUserText) {
       if(isTyping) return;
+      playClick();
+
       var promptText = customUserText || 'I demand to escalate this to Grievance Officer Mr Karthik R. immediately.';
       appendMessage('You', 'Customer', escapeHtml(promptText), 'user');
 
@@ -518,11 +843,15 @@
       var nextInc = activeIncidentNum + 2;
 
       showTyping('Grievance Officer Karthik R. is concluding a 3-hour executive lunch...');
+      updatePipelineNode(4, 'INFINITE GRIEVANCE RECURSION');
 
       setTimeout(function(){
         hideTyping();
         activeIncidentNum = newInc;
         totalIncidents++;
+
+        // Trigger Rubber Stamp Animation & Sound
+        triggerRubberStamp('RESOLVED: ZERO PRIOR CONTACT FOUND');
 
         if(incidents.length > 0) {
           incidents[0].tag = 'CLOSED: ZERO PRIOR CONTACT FOUND';
@@ -538,7 +867,7 @@
           finding: 'Awaiting customer inquiry to confirm zero contact.'
         });
 
-        if(metricIncidents) metricIncidents.textContent = totalIncidents;
+        if(dossierVal) dossierVal.textContent = 'INC-' + newInc;
         if(activeBadge) activeBadge.textContent = 'INC-' + newInc;
         if(agentStatus) agentStatus.textContent = 'Karthik R. (Grievance Automaton)';
 
@@ -559,8 +888,10 @@
           '<p>Please note that if you attempt to contact support regarding Incident #INC-' + newInc + ', that will also constitute zero contact, and will result in Incident #INC-' + nextInc + '.</p>' +
           '<p>Yours serenely,<br><strong>Karthik R.</strong><br>Chief Officer of Historical Revisionism & Grievance Redaction</p>';
 
-        appendMessage('Karthik R.', 'Grievance Officer', bodyHtml, 'agent', true);
+        appendMessage('Karthik R.', 'Grievance Officer', bodyHtml, 'agent', true, 'karthik');
         renderLedger();
+
+        triggerAchievement('grievance_loop', 'Kafka Redux', 'Minted fresh incident ' + newInc + ' after zero contact finding');
       }, 800);
     }
 
@@ -598,6 +929,7 @@
         return;
       }
 
+      playClick();
       appendMessage('You', 'Customer', escapeHtml(text), 'user');
 
       if(lower.indexOf('refund') !== -1 || lower.indexOf('money') !== -1 || lower.indexOf('rupee') !== -1 || lower.indexOf('cash') !== -1) {
@@ -609,7 +941,8 @@
             '<p>Your refund has been converted into 40 non-transferable Flipkart SuperTokens. These tokens may be redeemed exclusively on select 1999 trackball mouse cleaning swabs between 03:00 AM and 03:03 AM during leap years.</p>' +
             '<p>Demanding Indian Rupees will cause your account to be flagged for Unwarranted Financial Optimism.</p>' +
             '<p>Kind regards,<br><strong>Zaid</strong><br>Senior Currency Dematerialization Specialist</p>';
-          appendMessage('Agent Zaid', 'Currency Dematerialization', reply, 'agent');
+          appendMessage('Agent Zaid', 'Currency Dematerialization', reply, 'agent', false, 'zaid');
+          triggerAchievement('refund', 'SuperToken Speculator', 'Requested sovereign legal tender and received 40 swabs tokens');
         }, 750);
         return;
       }
@@ -623,7 +956,8 @@
             '<p>Our Legal Affairs and Concern Department has convened an emergency symposium. After six hours of rigorous deliberation, our attorneys concluded that since delivery dates are an artistic impression protected under freedom of speech, no statutory infraction has taken place.</p>' +
             '<p>A formal counter-affidavit chiseled into red sandstone will be dispatched via our standard logistics network (ETA: 2034).</p>' +
             '<p>Kind regards,<br><strong>The Concerned Legal Syndicate</strong></p>';
-          appendMessage('The Concerned Legal Syndicate', 'Litigation Neutralization', reply, 'agent');
+          appendMessage('The Concerned Legal Syndicate', 'Litigation Neutralization', reply, 'agent', false, 'dispatch');
+          triggerAchievement('legal', 'Consumer Tribunalist', 'Served notice to legal team currently drafting sandstone affidavits');
         }, 800);
         return;
       }
@@ -637,7 +971,8 @@
             '<p>Both chief executives received your email, nodded with solemn gravitas, and immediately directed our customer care desk to inform you that your mouse will arrive Tomorrow, Nov 07.</p>' +
             '<p>Both executives have returned to their boardrooms feeling deeply reassured by our efficiency.</p>' +
             '<p>Kind regards,<br><strong>Executive Stratospheric Redirection Desk</strong></p>';
-          appendMessage('Executive Stratosphere', 'Leadership Escalations', reply, 'agent');
+          appendMessage('Executive Stratosphere', 'Leadership Escalations', reply, 'agent', false, 'dispatch');
+          triggerAchievement('stratosphere', 'Stratospheric Escalator', 'Reached billionaire chief executives in corporate low-earth orbit');
         }, 800);
         return;
       }
@@ -653,7 +988,7 @@
           '<p>Here at Flipkart, we sell the emotional journey of waiting. Once a plastic device physically crosses your threshold, the romance evaporates and you are left merely with depreciating electronics. By detaining your parcel in our distribution network, we preserve the purity of your anticipation.</p>' +
           '<p>Your inquiry has been forwarded to our Concerned Team. They are profoundly concerned, but currently observing a mandatory tea break.</p>' +
           '<p>Kind regards,<br><strong>Zaid</strong><br>Verified Biological Human</p>';
-        appendMessage('Agent Zaid', 'Verified Biological Human', reply, 'agent');
+        appendMessage('Agent Zaid', 'Verified Biological Human', reply, 'agent', false, 'zaid');
       }, 750);
     }
 
@@ -675,10 +1010,61 @@
     };
 
     window.resetSimulator = function() {
+      playClick();
       initSimulator();
     };
 
+    window.openCertificate = function() {
+      playChime();
+      var modal = document.getElementById('sim-cert-modal');
+      var incSpan = document.getElementById('cert-inc-num');
+      if(incSpan) incSpan.textContent = 'INC-' + activeIncidentNum;
+      if(modal) modal.style.display = 'flex';
+      triggerAchievement('cert', 'Certified Un-delivered', 'Issued official Certificate of Quantum Non-Delivery');
+    };
+
+    window.closeCertificate = function() {
+      playClick();
+      var modal = document.getElementById('sim-cert-modal');
+      if(modal) modal.style.display = 'none';
+    };
+
+    window.copyCertText = function() {
+      playClick();
+      var text = '======================================================================\n' +
+                 'THE FLIPKART ACADEMY OF QUANTUM LOGISTICS\n' +
+                 'OFFICIAL CERTIFICATE OF REDACTION & COSMIC NON-DELIVERY\n' +
+                 '======================================================================\n\n' +
+                 'This document certifies that the Valued Customer has demonstrated\n' +
+                 'heroic spiritual detachment from legal tender and material goods.\n\n' +
+                 'Having filed multiple formal grievances, Grievance Officer Karthik R.\n' +
+                 'officially declares that customer has NEVER contacted customer support.\n\n' +
+                 'Current Incident #INC-' + activeIncidentNum + ' is hereby stamped permanently RESOLVED\n' +
+                 'while physical merchandise remains theoretical.\n\n' +
+                 'Signed:\n' +
+                 '• Zaid (Verified Flesh Human)\n' +
+                 '• Karthik R. (Chief Grievance Redactor)\n' +
+                 '• Tomorrow, Nov 07 (Trademarked Deadline)\n\n' +
+                 'Verified at: https://avoidflipkart.com/#simulator\n';
+
+      var showToast = function(){
+        var t = document.getElementById('copied-toast');
+        if(t){
+          t.textContent = '✓ Certificate Copied!';
+          t.classList.add('show');
+          setTimeout(function(){ t.classList.remove('show'); t.textContent = '✓ Copied!'; }, 2200);
+        }
+      };
+
+      if(navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(showToast).catch(function(){ fallbackCopy(text, showToast); });
+      } else {
+        fallbackCopy(text, showToast);
+      }
+    };
+
     window.copySimTranscript = function() {
+      playClick();
       if(transcriptHistory.length === 0) return;
       var text = '======================================================================\n' +
                  'FLIPKART BLACK™ VIP SUPPORT TRANSCRIPT · QUANTUM EDITION\n' +
