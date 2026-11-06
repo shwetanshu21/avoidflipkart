@@ -36,10 +36,10 @@
     <header class="site-header">
       <a class="wordmark" href="#top" aria-label="Avoid Flipkart home"><svg class="cart-icon" aria-hidden="true" viewBox="0 0 40 40"><path d="M3 5h4l4 21h21l4-15H10"/><circle cx="15" cy="33" r="2.5"/><circle cx="29" cy="33" r="2.5"/></svg><span>Avoid Flipkart</span></a>
       <nav aria-label="Main navigation">
-        <a href="#orders">The orders</a><a href="#emails">The emails</a><a href="#verdict">The verdict</a><a href="#about">About this case</a>
+        <a href="#orders">The orders</a><a href="#emails">The emails</a><a href="#simulator">Support simulator</a><a href="#verdict">The verdict</a><a href="#about">About this case</a>
         <a class="button button-small" href="#case-story">Read the story <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 12h17m-7-7 7 7-7 7"/></svg></a>
       </nav>
-      <details class="mobile-nav"><summary>Menu <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary><div><a href="#orders">The orders</a><a href="#emails">The emails</a><a href="#verdict">The verdict</a><a href="#about">About this case</a><a href="#case-story">Read the story</a></div></details>
+      <details class="mobile-nav"><summary>Menu <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary><div><a href="#orders">The orders</a><a href="#emails">The emails</a><a href="#simulator">Support simulator</a><a href="#verdict">The verdict</a><a href="#about">About this case</a><a href="#case-story">Read the story</a></div></details>
     </header>
     <div id="top">
       <div class="hero">
@@ -123,6 +123,90 @@
       </div>
     </section>
 
+    <section class="simulator-section section-wrap" id="simulator" aria-labelledby="simulator-heading">
+      <div class="section-heading light-heading">
+        <div>
+          <h2 id="simulator-heading">The support simulator.</h2>
+          <p class="sim-subheading">Experience Flipkart VIP priority support in real time: unprovoked rescheduling, meteorological panic, the strawberry Turing test, and the infinite grievance incident generator. Written in the unyielding tradition of David Thorne.</p>
+        </div>
+        <div class="sim-metrics" aria-live="polite">
+          <div class="sim-metric-card">
+            <span class="sim-metric-label">Active Incidents Minted</span>
+            <span class="sim-metric-value" id="sim-metric-incidents">1</span>
+          </div>
+          <div class="sim-metric-card">
+            <span class="sim-metric-label">Customer Blame Assigned</span>
+            <span class="sim-metric-value">100%</span>
+          </div>
+          <div class="sim-metric-card">
+            <span class="sim-metric-label">Physical Delivery Progress</span>
+            <span class="sim-metric-value">0.0%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sim-layout">
+        <div class="sim-terminal" role="region" aria-label="Flipkart VIP Support Console">
+          <div class="sim-terminal-header">
+            <div class="sim-terminal-title">
+              <span class="sim-live-indicator" aria-hidden="true"></span>
+              <div>
+                <strong>FLIPKART BLACK™ VIP CARE · QUANTUM PORTAL</strong>
+                <span class="sim-agent-status" id="sim-agent-status">Agent Zaid (100% Biological Flesh Entity)</span>
+              </div>
+            </div>
+            <div class="sim-terminal-meta">
+              <span class="sim-badge sim-badge-vip">NO QUEUE · NO BOT*</span>
+              <span class="sim-badge sim-badge-incident" id="sim-active-badge">INC-849201</span>
+            </div>
+          </div>
+
+          <div class="sim-chat-window" id="sim-chat-window" role="log" aria-live="polite"></div>
+
+          <div class="sim-typing-bar" id="sim-typing-bar" style="display:none;" aria-hidden="true">
+            <div class="sim-typing-dots"><span></span><span></span><span></span></div>
+            <span class="sim-typing-text" id="sim-typing-text">Agent Zaid is formulating an excuse...</span>
+          </div>
+
+          <div class="sim-pills" role="toolbar" aria-label="Quick response options">
+            <button type="button" class="sim-pill" onclick="handleSimPill('weather')">🌪️ Blame the weather</button>
+            <button type="button" class="sim-pill" onclick="handleSimPill('reschedule')">🛌 I didn't reschedule!</button>
+            <button type="button" class="sim-pill" onclick="handleSimPill('black')">👑 FK Black benefits?</button>
+            <button type="button" class="sim-pill" onclick="handleSimPill('human')">👤 Talk to real human</button>
+            <button type="button" class="sim-pill sim-pill-escalate" onclick="handleSimPill('grievance')">⚖️ Escalate to Grievance Officer</button>
+            <button type="button" class="sim-pill" onclick="handleSimPill('where')">📦 Where is my parcel?</button>
+            <button type="button" class="sim-pill" onclick="handleSimPill('cancel')">✂️ Cancel my order</button>
+          </div>
+
+          <form class="sim-input-form" id="sim-input-form" onsubmit="handleSimSubmit(event)">
+            <input type="text" id="sim-user-input" class="sim-input" placeholder="Type an inquiry or test biological humanity (e.g. 'how many r in strawberry')..." autocomplete="off" aria-label="Message to Flipkart VIP Support">
+            <button type="submit" class="button sim-send-btn" aria-label="Send message">
+              <span>Send</span>
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7Z"/></svg>
+            </button>
+            <button type="button" class="sim-reset-btn" onclick="resetSimulator()" title="Restart Kafkaesque Loop" aria-label="Restart simulator">
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+            </button>
+          </form>
+        </div>
+
+        <aside class="sim-ledger" aria-labelledby="ledger-heading">
+          <div class="sim-ledger-header">
+            <h3 id="ledger-heading">Grievance Audit Ledger</h3>
+            <span class="sim-ledger-sub">Live Bureaucratic Event Trail</span>
+          </div>
+          <div class="sim-ledger-list" id="sim-ledger-list"></div>
+          <div class="sim-ledger-footer">
+            <p>* Flipkart BLACK guaranteed priority: You are in an expedited line behind 6,481 other priority members. Delivery status remains theoretical.</p>
+            <button type="button" class="sim-copy-transcript-btn" onclick="copySimTranscript()">
+              <svg aria-hidden="true" viewBox="0 0 24 24"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              Copy Support Transcript
+            </button>
+          </div>
+        </aside>
+      </div>
+    </section>
+
     <section class="verdict section-wrap" id="verdict" aria-labelledby="verdict-heading">
       <div class="section-heading"><h2 id="verdict-heading">The verdict.</h2><p>What did we learn? Absolutely nothing we wanted to.</p></div>
       <div class="prose">
@@ -189,11 +273,458 @@
   }
   function fallbackCopy(text,cb){var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');if(cb)cb();}catch(e){}document.body.removeChild(ta);}
 
+  /* === Interactive Flipkart VIP Support Parody Simulator (David Thorne Style) === */
+  (function(){
+    var chatWindow = document.getElementById('sim-chat-window');
+    var ledgerList = document.getElementById('sim-ledger-list');
+    var typingBar = document.getElementById('sim-typing-bar');
+    var typingText = document.getElementById('sim-typing-text');
+    var userInput = document.getElementById('sim-user-input');
+    var metricIncidents = document.getElementById('sim-metric-incidents');
+    var activeBadge = document.getElementById('sim-active-badge');
+    var agentStatus = document.getElementById('sim-agent-status');
+
+    if(!chatWindow || !ledgerList) return;
+
+    var activeIncidentNum = 849201;
+    var totalIncidents = 1;
+    var isTyping = false;
+    var transcriptHistory = [];
+
+    var incidents = [
+      {
+        id: 849201,
+        tag: 'RESOLVED BEFORE DELIVERY',
+        tagClass: 'sim-tag-resolved',
+        concern: 'Five customer orders undelivered past published dates.',
+        finding: 'Complaint stamped “Resolved” to ensure administrative serenity while parcel remains hypothetical.'
+      }
+    ];
+
+    function escapeHtml(str) {
+      return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+    }
+
+    function getTimeString() {
+      var d = new Date();
+      var h = d.getHours();
+      var m = d.getMinutes();
+      var ampm = h >= 12 ? 'PM' : 'AM';
+      h = h % 12;
+      h = h ? h : 12;
+      m = m < 10 ? '0' + m : m;
+      return h + ':' + m + ' ' + ampm;
+    }
+
+    function appendMessage(sender, role, contentHtml, type, isGrievance) {
+      var time = getTimeString();
+      var msgEl = document.createElement('div');
+      msgEl.className = 'sim-msg ' + (type === 'user' ? 'sim-msg-user' : (type === 'system' ? 'sim-msg-system' : 'sim-msg-agent')) + (isGrievance ? ' sim-msg-grievance' : '');
+
+      if(type === 'system') {
+        msgEl.innerHTML = contentHtml;
+      } else if(type === 'user') {
+        msgEl.innerHTML = '<span class="sim-msg-author">You · ' + time + '</span>' +
+                          '<div class="sim-msg-bubble">' + contentHtml + '</div>';
+        transcriptHistory.push('[You - ' + time + ']: ' + contentHtml.replace(/<[^>]+>/g, ''));
+      } else {
+        msgEl.innerHTML = '<span class="sim-msg-author">' + escapeHtml(sender) + ' (' + escapeHtml(role) + ') · ' + time + '</span>' +
+                          '<div class="sim-msg-bubble">' + contentHtml + '</div>';
+        transcriptHistory.push('[' + sender + ' (' + role + ') - ' + time + ']:\n' + contentHtml.replace(/<br\s*\/?>/gi, '\n').replace(/<\/p>/gi, '\n\n').replace(/<[^>]+>/g, '').trim());
+      }
+
+      chatWindow.appendChild(msgEl);
+      chatWindow.scrollTop = chatWindow.scrollHeight;
+    }
+
+    function showTyping(status) {
+      isTyping = true;
+      if(typingText) typingText.textContent = status || 'Agent is formulating a response...';
+      if(typingBar) typingBar.style.display = 'flex';
+      chatWindow.scrollTop = chatWindow.scrollHeight;
+    }
+
+    function hideTyping() {
+      isTyping = false;
+      if(typingBar) typingBar.style.display = 'none';
+    }
+
+    function renderLedger() {
+      if(!ledgerList) return;
+      ledgerList.innerHTML = '';
+      incidents.forEach(function(inc){
+        var item = document.createElement('div');
+        item.className = 'sim-incident-item';
+        item.innerHTML = '<div class="sim-incident-item-header">' +
+          '<span class="sim-incident-id">INC-' + inc.id + '</span>' +
+          '<span class="sim-incident-status-tag ' + inc.tagClass + '">' + inc.tag + '</span>' +
+          '</div>' +
+          '<p class="sim-incident-concern"><strong>Stated Concern:</strong> ' + escapeHtml(inc.concern) + '</p>' +
+          '<p class="sim-incident-finding"><strong>Grievance Finding:</strong> ' + escapeHtml(inc.finding) + '</p>';
+        ledgerList.appendChild(item);
+      });
+    }
+
+    function initSimulator() {
+      chatWindow.innerHTML = '';
+      transcriptHistory = [];
+      activeIncidentNum = 849201;
+      totalIncidents = 1;
+      incidents = [
+        {
+          id: 849201,
+          tag: 'RESOLVED BEFORE DELIVERY',
+          tagClass: 'sim-tag-resolved',
+          concern: 'Five customer orders undelivered past published dates.',
+          finding: 'Complaint stamped “Resolved” to ensure administrative serenity while parcel remains hypothetical.'
+        }
+      ];
+
+      if(metricIncidents) metricIncidents.textContent = '1';
+      if(activeBadge) activeBadge.textContent = 'INC-849201';
+      if(agentStatus) agentStatus.textContent = 'Agent Zaid (100% Biological Flesh Entity)';
+
+      appendMessage('', '', '⚡ You are now connected to Flipkart BLACK™ VIP Care (Priority Queue #6,481). Estimated wait time: Indefinite.', 'system');
+
+      appendMessage('Agent Zaid', 'Verified Biological Human',
+        '<p>Dear Customer,</p>' +
+        '<p>Welcome to Flipkart BLACK™ 24x7 Priority No-Queue No-Bot Support. I am Agent Zaid, an authentic carbon-based humanoid entity who inhales standard atmospheric gases and experiences deep corporate remorse.</p>' +
+        '<p>I have thoroughly investigated your orders placed between September and November. I am delighted to inform you that your merchandise is in pristine theoretical condition.</p>' +
+        '<p>How may I unprovokedly reschedule your afternoon?</p>' +
+        '<p>Kind regards,<br><strong>Zaid</strong><br>Senior Empathy Emulation Executive</p>',
+        'agent'
+      );
+
+      renderLedger();
+    }
+
+    var THORNE_RESPONSES = {
+      weather: {
+        agent: 'Agent Zaid',
+        role: 'Senior Atmospheric Logistics Specialist',
+        typingStatus: 'Agent Zaid is consulting Doppler radar and local cloud densities...',
+        userText: 'Why is my parcel late? What happened to the delivery?',
+        body: '<p>Dear Customer,</p>' +
+              '<p>I have examined our Doppler meteorological telemetry logs for Western India. At approximately 11:34 AM, an ephemeral cumulus cloud measuring four metres across drifted over suburban Pune, causing ambient sunlight levels to dip by 0.04%.</p>' +
+              '<p>Under Flipkart Weather Policy 14-B (<em>“Protection of Couriers from Ephemeral Shadows”</em>), our delivery personnel are legally mandated to dismount their two-wheelers and seek shelter under a banyan tree until atmospheric serenity is re-established.</p>' +
+              '<p>Furthermore, local relative humidity reached 47%, which introduces the severe hazard of parcel cardboard developing acute existential lethargy.</p>' +
+              '<p>Your shipment has therefore been safely relocated to a climate-controlled bunker in an undisclosed district of Karnataka until atmospheric perfection is restored.</p>' +
+              '<div class="sim-exhibit">+--------------------------------------------------------------+\n' +
+              '| EXHIBIT A: METEOROLOGICAL TELEMETRY LOG                      |\n' +
+              '+--------------------------------------------------------------+\n' +
+              '| Wind Speed: 2.1 km/h (CRITICAL HURRICANE-FORCE BREEZE)       |\n' +
+              '| Cloud Activity: 1 single suspicious cloud near delivery hub  |\n' +
+              '| Courier Action: Dismounted Hero Splendor to meditate         |\n' +
+              '| Status: Rescheduled due to celestial disagreement            |\n' +
+              '+--------------------------------------------------------------+</div>' +
+              '<p>Kind regards,<br><strong>Zaid</strong><br>Senior Atmospheric Logistics Specialist</p>'
+      },
+      reschedule: {
+        agent: 'Agent Zaid',
+        role: 'Verified Biological Human',
+        typingStatus: 'Agent Zaid is accessing subconscious neural sleep telemetry...',
+        userText: 'I never asked to reschedule my delivery! Why does tracking claim customer requested?',
+        body: '<p>Dear Customer,</p>' +
+              '<p>Thank you for your correspondence denying that you rescheduled your delivery. While you may have no conscious recollection of submitting this request, our predictive neural telepathy engine recorded a distinct sigh of logistical ambivalence from your IP address at 02:41 AM on Thursday.</p>' +
+              '<p>Under Flipkart Clause 8.2 (<em>“Subconscious and Astral Modifications”</em>), any customer who rolls over in bed during REM sleep and subconsciously ponders whether they truly need an ergonomic mouse today has legally entered into a binding rescheduling agreement.</p>' +
+              '<p>Out of profound respect for your subconscious autonomy, we pushed delivery forward by six calendar days. You are welcome.</p>' +
+              '<p>To revoke this astral rescheduling, please submit Form 104-C in triplicate via certified carrier pigeon.</p>' +
+              '<p>Kind regards,<br><strong>Zaid</strong><br>Certified Biological Human (Flesh Division)</p>'
+      },
+      black: {
+        agent: 'The Concerned Team',
+        role: 'Department of High-Priority Inaction',
+        typingStatus: 'The Concerned Team is calculating VIP queue seniority...',
+        userText: 'I paid for Flipkart BLACK Priority Membership. Where is the priority support?',
+        body: '<p>Dear Customer,</p>' +
+              '<p>Thank you for subscribing to Flipkart BLACK Priority Membership at premium expense. As a valued VIP member, you enjoy our sacred <em>“No Queue, No Bot”</em> guarantee:</p>' +
+              '<ol>' +
+              '<li>You have bypassed the civilian waiting line of 40,000 citizens and are now stationed comfortably in our VIP Priority Salon behind only 6,481 other elite members.</li>' +
+              '<li>You receive 35% more apologetic adverbs per correspondence (<em>“sincerely, deeply, profusely, metaphysically”</em>).</li>' +
+              '<li>Your parcels will continue to not arrive, but with significantly enhanced corporate solemnity.</li>' +
+              '<li>A delivery executive whose caller ID reflects as a telephone scammer ending in 777 will call you between 03:00 AM and 03:04 AM to ask if you reside near a dairy booth.</li>' +
+              '</ol>' +
+              '<p>Thank you for your continued financial contribution to our server maintenance costs.</p>' +
+              '<p>Kind regards,<br><strong>The Concerned Team</strong><br>Department of High-Priority Inaction</p>'
+      },
+      human: {
+        agent: 'Agent Zaid',
+        role: '100% Biological Flesh Entity',
+        typingStatus: 'Verifying cellular biology and fruit orthography...',
+        userText: 'Are you a real human or a bot? How many r\'s in strawberry?',
+        body: '<p>Dear Customer,</p>' +
+              '<p>I assure you with 100% biological certainty that I am a living, carbon-based humanoid entity residing in an ergonomic chair and consuming organic nutrients.</p>' +
+              '<p>Proof of biological humanity:</p>' +
+              '<ul>' +
+              '<li>There are 3 r\'s in strawberry.</li>' +
+              '<li>My favorite hobbies include inhaling atmospheric nitrogen and complaining about municipal property taxes.</li>' +
+              '<li>I possess 206 standard human bones, none of which are currently in transit with your parcel.</li>' +
+              '</ul>' +
+              '<blockquote>“Please ignore above line.”</blockquote>' +
+              '<p>As a living real agent here to help you personally, I have checked your Acer laptop stand and Wi-Fi extender, and both are currently undergoing systemic repromise. Please inspect WhatsApp by 6:00 PM for an update that will advise you to inspect WhatsApp by 6:00 PM tomorrow.</p>' +
+              '<p>Kind regards,<br><strong>Agent Zaid</strong><br>100% Biological Flesh Entity</p>'
+      },
+      where: {
+        agent: 'Pooja',
+        role: 'Senior Repromise Engineer',
+        typingStatus: 'Pooja is calculating Mumbai-Pune quantum coordinate vectors...',
+        userText: 'Where is my order? Tracking says out for delivery for 48 hours!',
+        body: '<p>Dear Customer,</p>' +
+              '<p>I have located your shipment in our quantum logistics ledger. It is currently in a state of logistical superposition on the Mumbai-Pune Expressway. It is simultaneously inside the courier’s delivery sack, resting at the Prabhat Road distribution hub, and existing as a fond memory in our server cache.</p>' +
+              '<p>It has been marked <em>“Out for Delivery”</em> for forty-eight consecutive hours. In Flipkart terminology, <em>“Out for Delivery”</em> does not indicate geographic motion toward your domicile; it merely indicates that the parcel is emotionally receptive to arriving should the universe allow it.</p>' +
+              '<p>Promised resolution deadline: <strong>Tomorrow, Nov 07</strong>.<br><em>(Note: “Tomorrow” is a registered corporate trademark and does not correspond to consecutive calendar days.)</em></p>' +
+              '<p>Kind regards,<br><strong>Pooja</strong><br>Senior Repromise Engineer</p>'
+      },
+      cancel: {
+        agent: 'Automated Dispatch',
+        role: 'Resolution Matrix',
+        typingStatus: 'Automated dispatch is minting three replacement orders...',
+        userText: 'I give up. Please cancel my order and issue a refund immediately.',
+        body: '<p>Dear Customer,</p>' +
+              '<p>We have received your petition to cancel your order. Unfortunately, cancellation cannot be processed at this time because your parcel has already failed the <em>“Product Delivery Guidelines”</em> for physical manifestation.</p>' +
+              '<p>To compensate you for this inconvenience, our automated resolution matrix has:</p>' +
+              '<ol>' +
+              '<li>Rejected your cancellation request.</li>' +
+              '<li>Dispatched three (3) duplicate replacement orders scheduled for delivery in November 2029.</li>' +
+              '<li>Marked your complaint as <strong>“Resolved”</strong>.</li>' +
+              '<li>Deducted 50 SuperCoins from your account as an administrative homage.</li>' +
+              '</ol>' +
+              '<p>If you do not wish to receive the three replacement orders, please do not worry—they will also fail to arrive.</p>' +
+              '<p>Kind regards,<br><strong>Automated Resolution Dispatch</strong></p>'
+      }
+    };
+
+    function triggerPreset(key, customUserText) {
+      if(isTyping) return;
+      var item = THORNE_RESPONSES[key];
+      if(!item) return;
+
+      appendMessage('You', 'Customer', escapeHtml(customUserText || item.userText), 'user');
+      showTyping(item.typingStatus);
+
+      setTimeout(function(){
+        hideTyping();
+        appendMessage(item.agent, item.role, item.body, 'agent');
+      }, 700);
+    }
+
+    function triggerGrievanceEscalation(customUserText) {
+      if(isTyping) return;
+      var promptText = customUserText || 'I demand to escalate this to Grievance Officer Mr Karthik R. immediately.';
+      appendMessage('You', 'Customer', escapeHtml(promptText), 'user');
+
+      var oldInc = activeIncidentNum;
+      var newInc = activeIncidentNum + 1;
+      var nextInc = activeIncidentNum + 2;
+
+      showTyping('Grievance Officer Karthik R. is concluding a 3-hour executive lunch...');
+
+      setTimeout(function(){
+        hideTyping();
+        activeIncidentNum = newInc;
+        totalIncidents++;
+
+        if(incidents.length > 0) {
+          incidents[0].tag = 'CLOSED: ZERO PRIOR CONTACT FOUND';
+          incidents[0].tagClass = 'sim-tag-closed';
+          incidents[0].finding = 'Customer alleged prior correspondence; audit determined messages were mere spiritual hallucinations.';
+        }
+
+        incidents.unshift({
+          id: newInc,
+          tag: 'ACTIVE: PRE-CLOSED',
+          tagClass: 'sim-tag-active',
+          concern: 'Grievance escalation regarding non-existence of prior contact in INC-' + oldInc + '.',
+          finding: 'Awaiting customer inquiry to confirm zero contact.'
+        });
+
+        if(metricIncidents) metricIncidents.textContent = totalIncidents;
+        if(activeBadge) activeBadge.textContent = 'INC-' + newInc;
+        if(agentStatus) agentStatus.textContent = 'Karthik R. (Grievance Automaton)';
+
+        var bodyHtml = '<p>Dear Customer,</p>' +
+          '<p>This is Karthik R., Grievance Officer.</p>' +
+          '<p>I have personally inspected your file. Our database indicates with tranquil certainty that <strong>“we see you haven’t contacted our support team about your concern.”</strong></p>' +
+          '<p>While you may argue that you are currently typing into our support console and have exchanged multiple messages with Agent Zaid, our internal audit categorizes those interactions as purely recreational banter between consenting adults.</p>' +
+          '<p>Consequently, <strong>Incident #INC-' + oldInc + '</strong> has been stamped <strong>RESOLVED</strong> and archived due to non-existence of prior contact.</p>' +
+          '<p>To uphold Indian Consumer Redressal regulations, I have immediately minted new <strong>Incident #INC-' + newInc + '</strong> for your records.</p>' +
+          '<div class="sim-exhibit">+--------------------------------------------------------------+\n' +
+          '| EXHIBIT B: GRIEVANCE REDRESSAL CIRCULAR MATRIX               |\n' +
+          '+--------------------------------------------------------------+\n' +
+          '| [Customer Contacts Support] ──► [Grievance: "No Contact"]    |\n' +
+          '|          ▲                                      │            |\n' +
+          '|          │                                      ▼            |\n' +
+          '|   [Mint Incident #INC-' + newInc + '] ◄──── [Close #INC-' + oldInc + ' as Resolved] |\n' +
+          '+--------------------------------------------------------------+</div>' +
+          '<p>Please note that if you attempt to contact support regarding Incident #INC-' + newInc + ', that will also constitute zero contact, and will result in Incident #INC-' + nextInc + '.</p>' +
+          '<p>Yours serenely,<br><strong>Karthik R.</strong><br>Chief Officer of Historical Revisionism & Grievance Redaction</p>';
+
+        appendMessage('Karthik R.', 'Grievance Officer', bodyHtml, 'agent', true);
+        renderLedger();
+      }, 800);
+    }
+
+    function triggerCustomThorne(rawText) {
+      if(isTyping) return;
+      var text = rawText.trim();
+      var lower = text.toLowerCase();
+
+      if(lower.indexOf('grievance') !== -1 || lower.indexOf('karthik') !== -1 || lower.indexOf('escalat') !== -1) {
+        triggerGrievanceEscalation(text);
+        return;
+      }
+      if(lower.indexOf('weather') !== -1 || lower.indexOf('rain') !== -1 || lower.indexOf('cloud') !== -1 || lower.indexOf('wind') !== -1) {
+        triggerPreset('weather', text);
+        return;
+      }
+      if(lower.indexOf('reschedul') !== -1 || lower.indexOf('sleep') !== -1 || lower.indexOf('postpone') !== -1) {
+        triggerPreset('reschedule', text);
+        return;
+      }
+      if(lower.indexOf('black') !== -1 || lower.indexOf('vip') !== -1 || lower.indexOf('member') !== -1) {
+        triggerPreset('black', text);
+        return;
+      }
+      if(lower.indexOf('human') !== -1 || lower.indexOf('bot') !== -1 || lower.indexOf('strawberr') !== -1 || lower.indexOf('fruit') !== -1) {
+        triggerPreset('human', text);
+        return;
+      }
+      if(lower.indexOf('where') !== -1 || lower.indexOf('track') !== -1 || lower.indexOf('status') !== -1) {
+        triggerPreset('where', text);
+        return;
+      }
+      if(lower.indexOf('cancel') !== -1) {
+        triggerPreset('cancel', text);
+        return;
+      }
+
+      appendMessage('You', 'Customer', escapeHtml(text), 'user');
+
+      if(lower.indexOf('refund') !== -1 || lower.indexOf('money') !== -1 || lower.indexOf('rupee') !== -1 || lower.indexOf('cash') !== -1) {
+        showTyping('Agent Zaid is calculating non-convertible SuperToken conversions...');
+        setTimeout(function(){
+          hideTyping();
+          var reply = '<p>Dear Customer,</p>' +
+            '<p>I have reviewed your request for monetary remuneration. In accordance with Section 19 of our Terms of Comfort, sovereign legal tender has been classified as an obsolete medium of spiritual exchange.</p>' +
+            '<p>Your refund has been converted into 40 non-transferable Flipkart SuperTokens. These tokens may be redeemed exclusively on select 1999 trackball mouse cleaning swabs between 03:00 AM and 03:03 AM during leap years.</p>' +
+            '<p>Demanding Indian Rupees will cause your account to be flagged for Unwarranted Financial Optimism.</p>' +
+            '<p>Kind regards,<br><strong>Zaid</strong><br>Senior Currency Dematerialization Specialist</p>';
+          appendMessage('Agent Zaid', 'Currency Dematerialization', reply, 'agent');
+        }, 750);
+        return;
+      }
+
+      if(lower.indexOf('court') !== -1 || lower.indexOf('lawyer') !== -1 || lower.indexOf('legal') !== -1 || lower.indexOf('consumer') !== -1 || lower.indexOf('notice') !== -1) {
+        showTyping('The Concerned Legal Syndicate is drafting counter-affidavits...');
+        setTimeout(function(){
+          hideTyping();
+          var reply = '<p>Dear Customer,</p>' +
+            '<p>We acknowledge receipt of your emotional distress and notice of proceedings before the Consumer Disputes Redressal Commission.</p>' +
+            '<p>Our Legal Affairs and Concern Department has convened an emergency symposium. After six hours of rigorous deliberation, our attorneys concluded that since delivery dates are an artistic impression protected under freedom of speech, no statutory infraction has taken place.</p>' +
+            '<p>A formal counter-affidavit chiseled into red sandstone will be dispatched via our standard logistics network (ETA: 2034).</p>' +
+            '<p>Kind regards,<br><strong>The Concerned Legal Syndicate</strong></p>';
+          appendMessage('The Concerned Legal Syndicate', 'Litigation Neutralization', reply, 'agent');
+        }, 800);
+        return;
+      }
+
+      if(lower.indexOf('kalyan') !== -1 || lower.indexOf('ceo') !== -1 || lower.indexOf('walmart') !== -1 || lower.indexOf('furner') !== -1) {
+        showTyping('Transmitting message to executive stratospheric orbit...');
+        setTimeout(function(){
+          hideTyping();
+          var reply = '<p>Dear Customer,</p>' +
+            '<p>Your escalation to Kalyan Krishnamurthy (Group CEO of Flipkart) and John Furner (President and CEO of Walmart) has reached corporate stratosphere.</p>' +
+            '<p>Both chief executives received your email, nodded with solemn gravitas, and immediately directed our customer care desk to inform you that your mouse will arrive Tomorrow, Nov 07.</p>' +
+            '<p>Both executives have returned to their boardrooms feeling deeply reassured by our efficiency.</p>' +
+            '<p>Kind regards,<br><strong>Executive Stratospheric Redirection Desk</strong></p>';
+          appendMessage('Executive Stratosphere', 'Leadership Escalations', reply, 'agent');
+        }, 800);
+        return;
+      }
+
+      // Default David Thorne dry deconstruction
+      showTyping('Agent Zaid is dissecting premise and formulating polite refusal...');
+      setTimeout(function(){
+        hideTyping();
+        var reply = '<p>Dear Customer,</p>' +
+          '<p>Thank you for your message:</p>' +
+          '<blockquote>“' + escapeHtml(text) + '”</blockquote>' +
+          '<p>I have examined your sentence with the meticulous pedantry it deserves. While your syntax is undeniably enthusiastic, you are operating under the antiquated assumption that e-commerce requires the vulgar exchange of physical cardboard.</p>' +
+          '<p>Here at Flipkart, we sell the emotional journey of waiting. Once a plastic device physically crosses your threshold, the romance evaporates and you are left merely with depreciating electronics. By detaining your parcel in our distribution network, we preserve the purity of your anticipation.</p>' +
+          '<p>Your inquiry has been forwarded to our Concerned Team. They are profoundly concerned, but currently observing a mandatory tea break.</p>' +
+          '<p>Kind regards,<br><strong>Zaid</strong><br>Verified Biological Human</p>';
+        appendMessage('Agent Zaid', 'Verified Biological Human', reply, 'agent');
+      }, 750);
+    }
+
+    window.handleSimPill = function(key) {
+      if(key === 'grievance') {
+        triggerGrievanceEscalation();
+      } else {
+        triggerPreset(key);
+      }
+    };
+
+    window.handleSimSubmit = function(e) {
+      if(e && e.preventDefault) e.preventDefault();
+      if(!userInput) return;
+      var val = userInput.value.trim();
+      if(!val) return;
+      userInput.value = '';
+      triggerCustomThorne(val);
+    };
+
+    window.resetSimulator = function() {
+      initSimulator();
+    };
+
+    window.copySimTranscript = function() {
+      if(transcriptHistory.length === 0) return;
+      var text = '======================================================================\n' +
+                 'FLIPKART BLACK™ VIP SUPPORT TRANSCRIPT · QUANTUM EDITION\n' +
+                 'Active Incident: INC-' + activeIncidentNum + ' | Total Minted: ' + totalIncidents + '\n' +
+                 'Physical Delivery Progress: 0.0% | Customer Blame Assigned: 100%\n' +
+                 '======================================================================\n\n' +
+                 transcriptHistory.join('\n\n') +
+                 '\n\n----------------------------------------------------------------------\n' +
+                 'GRIEVANCE AUDIT LEDGER:\n' +
+                 incidents.map(function(inc){ return '• INC-' + inc.id + ' [' + inc.tag + ']: ' + inc.concern + ' -> ' + inc.finding; }).join('\n') +
+                 '\n----------------------------------------------------------------------\n' +
+                 'Avoid Flipkart: The dates arrived before the orders.\n' +
+                 'Documented Case: https://avoidflipkart.com/#simulator\n';
+
+      var showToast = function(){
+        var t = document.getElementById('copied-toast');
+        if(t){
+          t.textContent = '✓ Transcript Copied!';
+          t.classList.add('show');
+          setTimeout(function(){ t.classList.remove('show'); t.textContent = '✓ Copied!'; }, 2200);
+        }
+      };
+
+      if(navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(showToast).catch(function(){ fallbackCopy(text, showToast); });
+      } else {
+        fallbackCopy(text, showToast);
+      }
+    };
+
+    window.simulateSupportTool = function(input) {
+      var k = String(input).toLowerCase();
+      if(THORNE_RESPONSES[k]) return THORNE_RESPONSES[k].body.replace(/<[^>]+>/g, '');
+      if(k === 'grievance') return 'Grievance Officer Karthik R.: We see you haven\'t contacted our support team about your concern. Incident #INC-' + activeIncidentNum + ' closed. New Incident #INC-' + (activeIncidentNum + 1) + ' generated.';
+      return 'Agent Zaid: Your message has been safely detained. Delivery expected Tomorrow, Nov 07.';
+    };
+
+    // Initialize on load
+    initSimulator();
+  })();
+
   /* WebMCP: expose real page actions to agent browsers that support the API */
   (function(){
     var ctx=document.modelContext||navigator.modelContext;
     if(!ctx||typeof ctx.registerTool!=='function')return;
-    var sections=['orders','emails','verdict','about','case-story'];
+    var sections=['orders','emails','simulator','verdict','about','case-story'];
     var controller=new AbortController();
     function register(tool){
       try{var p=ctx.registerTool(tool,{signal:controller.signal});if(p&&p.catch)p.catch(function(){});}catch(e){}
@@ -216,6 +747,14 @@
         if(!el)return {content:[{type:'text',text:'Section not found.'}],isError:true};
         el.scrollIntoView({behavior:'smooth',block:'start'});
         return {content:[{type:'text',text:'Opened '+id+' at https://avoidflipkart.com/#'+id}]};
+      }
+    });
+    register({
+      name:'chat_with_flipkart_support',
+      description:'Send an inquiry to the interactive Flipkart VIP Support parody simulator and receive a David Thorne style response.',
+      inputSchema:{type:'object',properties:{message:{type:'string',description:'Inquiry or preset key: weather, reschedule, black, human, grievance, where, cancel'}},required:['message'],additionalProperties:false},
+      execute:function(args){
+        return {content:[{type:'text',text:window.simulateSupportTool?window.simulateSupportTool(args.message):'Simulator offline'}]};
       }
     });
   })();
